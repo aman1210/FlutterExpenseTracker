@@ -43,6 +43,18 @@ class _DraggableCardState extends State<DraggableCard>
     super.dispose();
   }
 
+  void openBottomSheet(var string, BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: 400,
+          child: Center(child: Text(string)),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -56,8 +68,13 @@ class _DraggableCardState extends State<DraggableCard>
         });
       },
       onPanEnd: (details) {
-        print(_alignment.x);
         _runAnimation();
+        if (_alignment.x < -0.5) {
+          openBottomSheet('expense', context);
+        }
+        if (_alignment.x > 0.5) {
+          openBottomSheet('income', context);
+        }
       },
       child: Align(
         alignment: _alignment,

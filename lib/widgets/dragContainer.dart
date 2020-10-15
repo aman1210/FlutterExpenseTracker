@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:expenseTracker/widgets/draggableCard.dart';
 
 class DragContainer extends StatefulWidget {
-  Size size;
+  final Size size;
   DragContainer(this.size);
 
   @override
