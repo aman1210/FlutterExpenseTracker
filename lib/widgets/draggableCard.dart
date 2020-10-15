@@ -68,14 +68,23 @@ class _DraggableCardState extends State<DraggableCard>
           child: Container(
             height: 60,
             width: 60,
-            decoration: BoxDecoration(boxShadow: [
-              const BoxShadow(color: Color.fromRGBO(212, 200, 210, .7)),
-              const BoxShadow(
-                color: Colors.white,
-                spreadRadius: -5,
-                blurRadius: 10,
-              ),
-            ], borderRadius: BorderRadius.circular(60)),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              boxShadow: [
+                const BoxShadow(color: Color.fromRGBO(212, 200, 210, .7)),
+                const BoxShadow(
+                  color: Colors.white,
+                  spreadRadius: -5,
+                  blurRadius: 10,
+                ),
+              ],
+              borderRadius: BorderRadius.circular(60),
+            ),
+            child: Icon(
+              Icons.drag_indicator,
+              color: Colors.white,
+              size: 40,
+            ),
           ),
         ),
       ),
