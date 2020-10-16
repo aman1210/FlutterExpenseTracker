@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         accentColor: Colors.amber,
+        fontFamily: 'Poppins',
       ),
       home: MyHomePage(),
     );
