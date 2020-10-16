@@ -71,7 +71,7 @@ class _MakeTansactionState extends State<MakeTansaction> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'SELECT DATE',
+                    'SELECTED DATE:',
                     style: TextStyle(
                       fontFamily: 'TimeBurner',
                       fontWeight: FontWeight.bold,
@@ -79,29 +79,85 @@ class _MakeTansactionState extends State<MakeTansaction> {
                       color: Colors.white,
                     ),
                   ),
-                  GestureDetector(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 8.0),
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${DateFormat.yMMMMEEEEd().format(selectedDate)}',
+                        style: TextStyle(
+                          fontFamily: 'TimeBurner',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                       ),
-                      child: Icon(FontAwesomeIcons.calendarAlt),
-                    ),
-                    onTap: () async {
-                      final DateTime picked = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.utc(DateTime.now().year, 1),
-                        lastDate: DateTime.utc(DateTime.now().year, 12, 31),
-                      );
-                      if (picked != null && picked != selectedDate)
-                        setState(() {
-                          selectedDate = picked;
-                        });
-                    },
+                      GestureDetector(
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          child: Icon(FontAwesomeIcons.calendarAlt),
+                        ),
+                        onTap: () async {
+                          final DateTime picked = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.utc(DateTime.now().year, 1),
+                            lastDate: DateTime.now(),
+                          );
+                          if (picked != null && picked != selectedDate)
+                            setState(
+                              () {
+                                selectedDate = picked;
+                              },
+                            );
+                        },
+                      ),
+                    ],
                   ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 30),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16.0),
+                          child: Text(
+                            'T',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: 'TimeBurner',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: widget.name == 'Income'
+                                    ? green.withGreen(180)
+                                    : blue.withBlue(255),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  labelText:
+                                      "${widget.name.toUpperCase()} TITLE",
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 0,
+                                    horizontal: 20,
+                                  ),
+                                  labelStyle: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: green.withGreen(120)),
+                                  border: InputBorder.none),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
