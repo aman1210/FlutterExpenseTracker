@@ -28,7 +28,7 @@ class _DraggableCardState extends State<DraggableCard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(microseconds: 100),
     );
     _controller.addListener(() {
       setState(() {
@@ -69,10 +69,10 @@ class _DraggableCardState extends State<DraggableCard>
       },
       onPanEnd: (details) {
         _runAnimation();
-        if (_alignment.x < -0.5) {
+        if (_alignment.x < -0.8) {
           openBottomSheet('expense', context);
         }
-        if (_alignment.x > 0.5) {
+        if (_alignment.x > 0.8) {
           openBottomSheet('income', context);
         }
       },

@@ -97,7 +97,7 @@ class _DragContainerState extends State<DragContainer>
       children: [
         Container(
           width: containerWidth,
-          height: 70,
+          height: 60,
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.only(left: 5),
           decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class _DragContainerState extends State<DragContainer>
           ),
         ),
         Container(
-          height: 70,
+          height: 60,
           width: containerWidth,
           margin: const EdgeInsets.only(right: 5),
           decoration: BoxDecoration(
