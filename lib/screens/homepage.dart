@@ -12,51 +12,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _currentIndex = 0;
-  bool _isVisible;
-  ScrollController _controller;
-  @override
-  void initState() {
-    super.initState();
-    _isVisible = true;
-    _controller = ScrollController();
-    _controller.addListener(() {
-      if (_controller.position.userScrollDirection == ScrollDirection.reverse) {
-        if (_isVisible) {
-          setState(() {
-            _isVisible = false;
-          });
-        }
-      }
-      if (_controller.position.userScrollDirection == ScrollDirection.forward) {
-        if (!_isVisible)
-          setState(() {
-            _isVisible = true;
-          });
-      }
+  var _isVisible = true;
+
+  changeVisibility(bool val) {
+    setState(() {
+      _isVisible = val;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: new CustomScrollView(
-          controller: _controller,
-          shrinkWrap: true,
-          slivers: <Widget>[
-            new SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              sliver: new SliverList(
-                delegate: new SliverChildListDelegate(
-                  <Widget>[
-                    Home(),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: Home(changeVisibility, _isVisible),
       bottomNavigationBar: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         height: _isVisible == true ? 60 : 0,

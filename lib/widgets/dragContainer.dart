@@ -123,13 +123,16 @@ class _DragContainerState extends State<DragContainer>
       ],
     );
 
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        textHolder,
-        containerText,
-        DraggableCard(),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(top: 50, bottom: 20),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          textHolder,
+          containerText,
+          DraggableCard(),
+        ],
+      ),
     );
   }
 }
