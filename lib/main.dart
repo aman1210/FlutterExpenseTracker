@@ -1,4 +1,5 @@
 import 'package:expenseTracker/Provider/categoryProvider.dart';
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (ctx) => CategoryProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (ctx) => CategoryProvider()),
+        ChangeNotifierProvider(create: (ctx) => TransactionProvider()),
+      ],
       child: MaterialApp(
         title: 'Expense Tracker',
         debugShowCheckedModeBanner: false,

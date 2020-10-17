@@ -8,8 +8,8 @@ class TransactionProvider with ChangeNotifier {
   IconData icon;
   String category;
 
-  void setTitle(String title, int amount) {
-    title = title;
-    amount = amount;
+  setTitle(String newtitle, int newamount) {
+    title = newtitle;
+    amount = newamount;
   }
 }
