@@ -2,8 +2,9 @@ import 'package:expenseTracker/widgets/transactionPage/categoryPicker.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseTracker/widgets/transactionPage/datePicker.dart';
 import 'package:expenseTracker/widgets/transactionPage/mainFormEntry.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class TransactionForm extends StatelessWidget {
+class TransactionForm extends StatefulWidget {
   TransactionForm({
     Key key,
     @required this.name,
@@ -11,8 +12,30 @@ class TransactionForm extends StatelessWidget {
 
   final String name;
 
+  @override
+  _TransactionFormState createState() => _TransactionFormState();
+}
+
+class _TransactionFormState extends State<TransactionForm> {
   final Color green = Color.fromRGBO(34, 206, 98, 1);
   final Color blue = Colors.blue;
+
+  var title;
+  var amount;
+  var date;
+  var category;
+  var icon;
+
+  void setTitle(String title, int amount) {
+    title = title;
+    amount = amount;
+  }
+
+  void submit() {
+    print(title);
+    print(amount);
+  }
+
   @override
   Widget build(BuildContext context) {
     var formHeading = Text(
@@ -35,18 +58,79 @@ class TransactionForm extends StatelessWidget {
             topLeft: Radius.circular(60),
             topRight: Radius.circular(60),
           ),
-          color: name == 'Income' ? green : blue,
+          color: widget.name == 'Income' ? green : blue,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             formHeading,
             DatePicker(),
-            MainForm(name: name, green: green, blue: blue),
-            CategoryPicker(
-              name: name,
-              green: green,
-              blue: blue,
+            MainForm(name: widget.name, green: green, blue: blue),
+            Expanded(
+              child: CategoryPicker(
+                name: widget.name,
+                green: green,
+                blue: blue,
+              ),
+            ),
+            Container(
+              // color: Colors.red,
+              alignment: Alignment.bottomCenter,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 60,
+                          child: Icon(FontAwesomeIcons.times),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            'Cancel',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            child: Icon(FontAwesomeIcons.check),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(left: 5, right: 15),
+                            child: Text('Add ${widget.name}'),
+                          )
+                        ],
+                      ),
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(60),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
