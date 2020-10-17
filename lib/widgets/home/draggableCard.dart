@@ -1,4 +1,4 @@
-import 'package:expenseTracker/widgets/transaction.dart';
+import 'package:expenseTracker/screens/transaction.dart';
 import 'package:flutter/material.dart';
 
 class DraggableCard extends StatefulWidget {
