@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.16.1
+  provider: ^4.3.2+2
+  icon_picker: ^1.1.0
   font_awesome_flutter: ^8.10.0
   fancy_bottom_navigation: ^0.3.2
 

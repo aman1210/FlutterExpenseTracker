@@ -1,7 +1,9 @@
+import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:expenseTracker/screens/homepage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,15 +16,18 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Expense Tracker',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        accentColor: Colors.amber,
-        fontFamily: 'Poppins',
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (ctx) => CategoryProvider())],
+      child: MaterialApp(
+        title: 'Expense Tracker',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+          accentColor: Colors.amber,
+          fontFamily: 'Poppins',
+        ),
+        home: MyHomePage(),
       ),
-      home: MyHomePage(),
     );
   }
 }

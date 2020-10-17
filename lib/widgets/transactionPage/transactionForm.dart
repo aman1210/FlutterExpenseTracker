@@ -43,7 +43,11 @@ class TransactionForm extends StatelessWidget {
             formHeading,
             DatePicker(),
             MainForm(name: name, green: green, blue: blue),
-            CategoryPicker(name: name),
+            CategoryPicker(
+              name: name,
+              green: green,
+              blue: blue,
+            ),
           ],
         ),
       ),
