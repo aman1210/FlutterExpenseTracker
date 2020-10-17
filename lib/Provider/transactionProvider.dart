@@ -12,4 +12,6 @@ class TransactionProvider with ChangeNotifier {
     title = newtitle;
     amount = newamount;
   }
+
+  setCategory(String newCategory, String newicon) {}
 }

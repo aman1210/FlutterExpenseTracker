@@ -19,23 +19,6 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final Color green = Color.fromRGBO(34, 206, 98, 1);
   final Color blue = Colors.blue;
-
-  var title;
-  var amount;
-  var date;
-  var category;
-  var icon;
-
-  void setTitle(String title, int amount) {
-    title = title;
-    amount = amount;
-  }
-
-  void submit() {
-    print(title);
-    print(amount);
-  }
-
   @override
   Widget build(BuildContext context) {
     var formHeading = Text(
@@ -74,7 +57,6 @@ class _TransactionFormState extends State<TransactionForm> {
               ),
             ),
             Container(
-              // color: Colors.red,
               alignment: Alignment.bottomCenter,
               width: double.infinity,
               child: Row(
