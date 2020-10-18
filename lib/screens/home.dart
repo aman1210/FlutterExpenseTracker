@@ -98,6 +98,14 @@ class _HomeState extends State<Home> {
                   height: 10,
                 ),
                 DragContainer(size),
+                if (transaction.length == 0)
+                  Image.asset('assets/images/search.png'),
+                if (transaction.length == 0)
+                  Text(
+                    'No Transactions Yet!!!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
                 if (transaction.length > 0)
                   ...transaction.map((e) {
                     return Padding(
