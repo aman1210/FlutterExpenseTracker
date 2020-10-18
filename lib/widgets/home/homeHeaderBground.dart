@@ -20,7 +20,7 @@ class HomeHeaderBackground extends StatelessWidget {
       child: AnimatedContainer(
         alignment: Alignment.topCenter,
         height: visible ? height : 0,
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 250),
         decoration: BoxDecoration(
           image: DecorationImage(
             alignment: Alignment.topCenter,

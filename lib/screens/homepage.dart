@@ -22,9 +22,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _list = [
+      Home(changeVisibility, _isVisible),
+      Center(
+        child: Text('stats'),
+      ),
+      Center(
+        child: Text('profile'),
+      ),
+    ];
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: Home(changeVisibility, _isVisible),
+      body: _list[_currentIndex],
       bottomNavigationBar: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         height: _isVisible == true ? 60 : 0,
