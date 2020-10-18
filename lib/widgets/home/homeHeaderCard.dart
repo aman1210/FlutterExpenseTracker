@@ -1,19 +1,26 @@
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class HomeHeaderCard extends StatelessWidget {
   final double angle;
   final String name;
-  final int amount;
+
   const HomeHeaderCard({
     Key key,
     @required this.name,
-    @required this.amount,
     @required this.angle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var amount;
+    if (name == 'Earned') {
+      amount = Provider.of<TransactionProvider>(context).earned;
+    } else {
+      amount = Provider.of<TransactionProvider>(context).spent;
+    }
     return Card(
       elevation: 15,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -49,10 +56,10 @@ class HomeHeaderCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '\$',
+                      '₹',
                       style: TextStyle(
                           fontSize: 24,
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           fontWeight: FontWeight.w600,
                           color: Colors.grey),
                     ),

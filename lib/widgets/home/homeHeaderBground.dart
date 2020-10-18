@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class HomeHeaderBackground extends StatelessWidget {
-  const HomeHeaderBackground({
-    Key key,
-  }) : super(key: key);
+  final bool visible;
+  final double height;
+  const HomeHeaderBackground({Key key, this.visible, this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,13 @@ class HomeHeaderBackground extends StatelessWidget {
         ),
       ),
       margin: const EdgeInsets.all(0),
-      child: Container(
+      child: AnimatedContainer(
+        alignment: Alignment.topCenter,
+        height: visible ? height : 0,
+        duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
           image: DecorationImage(
+            alignment: Alignment.topCenter,
             image: AssetImage('assets/images/Oheader2.jpg'),
             fit: BoxFit.cover,
           ),

@@ -39,6 +39,8 @@ class _CategoryPickerState extends State<CategoryPicker> {
       Provider.of<TransactionProvider>(context, listen: false).setCategory(
         category[selectedCategory].categoryName,
         category[selectedCategory].icon.codePoint,
+        category[selectedCategory].icon.fontFamily,
+        category[selectedCategory].icon.fontPackage,
       );
     }
   }
@@ -147,13 +149,17 @@ class _CategoryPickerState extends State<CategoryPicker> {
       children: [
         heading,
         categories,
-        if (visible)
-          CustomCategoryTitle(
+
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          height: visible ? 70 : 0,
+          child: CustomCategoryTitle(
             name: widget.name,
             green: widget.green,
             blue: widget.blue,
             changeVisibilty: changeVisibility,
           ),
+        ),
         // if (visible) CustomIconPicker()
       ],
     );

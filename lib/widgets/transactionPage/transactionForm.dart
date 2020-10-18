@@ -1,3 +1,4 @@
+import 'package:expenseTracker/Model/transaction.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/widgets/transactionPage/categoryPicker.dart';
 import 'package:flutter/material.dart';
@@ -98,14 +99,31 @@ class _TransactionFormState extends State<TransactionForm> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Provider.of<TransactionProvider>(context, listen: false)
-                          .addTransaction();
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text('hello'),
-                        ),
-                      );
+                      var msg = Provider.of<TransactionProvider>(context,
+                              listen: false)
+                          .addTransaction(widget.name == 'Income'
+                              ? TransactionType.Income
+                              : TransactionType.Expense);
+                      if (msg != '') {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text('Error'),
+                            content: Text(msg),
+                            actions: [
+                              OutlineButton.icon(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(Icons.check),
+                                label: Text('Okay!'),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        Navigator.of(context).pop();
+                      }
                     },
                     child: Container(
                       child: Row(

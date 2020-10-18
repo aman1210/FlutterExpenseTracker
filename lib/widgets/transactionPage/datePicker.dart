@@ -37,7 +37,10 @@ class _DatePickerState extends State<DatePicker> {
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
             ),
-            child: Icon(FontAwesomeIcons.calendarAlt),
+            child: Icon(
+              FontAwesomeIcons.calendarAlt,
+              color: Colors.deepPurple,
+            ),
           ),
           onTap: () async {
             final DateTime picked = await showDatePicker(

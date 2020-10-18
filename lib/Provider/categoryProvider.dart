@@ -18,6 +18,8 @@ class CategoryProvider with ChangeNotifier {
     new CategoryModel(icon: Icons.add, categoryName: 'Other'),
     new CategoryModel(
         icon: FontAwesomeIcons.moneyCheck, categoryName: 'Salary'),
+    new CategoryModel(icon: FontAwesomeIcons.trophy, categoryName: 'Reward'),
+    new CategoryModel(icon: FontAwesomeIcons.coins, categoryName: 'Cashback')
   ];
 
   List<CategoryModel> getCategory(String name) {

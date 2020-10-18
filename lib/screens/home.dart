@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:expenseTracker/Model/transaction.dart';
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBground.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBalance.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderCard.dart';
@@ -8,6 +10,8 @@ import 'package:flutter/rendering.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:expenseTracker/widgets/home/dragContainer.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   final Function cV;
@@ -42,13 +46,19 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var size = mediaQuery.size;
+    List<Transaction> transaction =
+        Provider.of<TransactionProvider>(context).transaction;
+    // Provider.of<TransactionProvider>(context).totalBalance;
     var header = AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      height: widget.visible ? size.height * 0.35 : 0,
+      height: size.height * 0.35,
       child: Stack(
         overflow: Overflow.visible,
         children: [
-          HomeHeaderBackground(),
+          HomeHeaderBackground(
+            visible: widget.visible,
+            height: size.height * 0.35,
+          ),
           HomeHeaderBalance(),
           Positioned(
             bottom: -30,
@@ -60,12 +70,10 @@ class _HomeState extends State<Home> {
                 children: [
                   HomeHeaderCard(
                     name: 'Spent',
-                    amount: 500,
                     angle: math.pi * 3 / 4,
                   ),
                   HomeHeaderCard(
                     name: 'Earned',
-                    amount: 500,
                     angle: -math.pi * 1 / 4,
                   ),
                 ],
@@ -75,6 +83,7 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+
     return CustomScrollView(
       controller: _controller,
       shrinkWrap: true,
@@ -89,6 +98,35 @@ class _HomeState extends State<Home> {
                   height: 10,
                 ),
                 DragContainer(size),
+                if (transaction.length > 0)
+                  ...transaction.map((e) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Card(
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            child: Icon(
+                              IconData(
+                                e.icon,
+                                fontFamily: e.iconFamily,
+                                fontPackage: e.iconPackage,
+                              ),
+                              color: Colors.white,
+                              size: 22,
+                            ),
+                            backgroundColor:
+                                e.transactionType == TransactionType.Income
+                                    ? Colors.green
+                                    : Colors.red[400],
+                            radius: 28,
+                          ),
+                          title: Text(e.title),
+                          subtitle: Text(DateFormat.yMMMd().format(e.date)),
+                          trailing: Text('₹ ${e.amount.toString()}'),
+                        ),
+                      ),
+                    );
+                  }).toList(),
               ],
             ),
           ),

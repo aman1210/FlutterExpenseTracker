@@ -82,6 +82,7 @@ class _MainFormState extends State<MainForm> {
                       textInputAction: TextInputAction.next,
                       controller: _title,
                       onFieldSubmitted: (value) {
+                        saveData();
                         FocusScope.of(context).requestFocus(_amountNode);
                       },
                       validator: (value) {

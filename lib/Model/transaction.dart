@@ -10,7 +10,9 @@ class Transaction {
   final int amount;
   final DateTime date;
   final String category;
-  final IconData icon;
+  final int icon;
+  final String iconFamily;
+  final String iconPackage;
   final TransactionType transactionType;
 
   Transaction(
@@ -19,5 +21,7 @@ class Transaction {
       this.amount,
       this.category,
       this.icon,
-      this.date});
+      this.date,
+      @required this.iconFamily,
+      @required this.iconPackage});
 }
