@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 
 class MakeTansaction extends StatelessWidget {
   final String name;
-  MakeTansaction(this.name);
+  final Size size;
+  MakeTansaction(this.name, this.size);
   @override
   Widget build(BuildContext context) {
     var backArrow = Padding(
@@ -37,21 +38,27 @@ class MakeTansaction extends StatelessWidget {
         ),
       ),
     );
-    return Container(
-      padding: const EdgeInsets.only(top: 50),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          backArrow,
-          SizedBox(
-            height: 20,
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Container(
+          height: size.height,
+          padding: const EdgeInsets.only(top: 50),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              backArrow,
+              SizedBox(
+                height: 20,
+              ),
+              title,
+              titleDate,
+              TransactionForm(
+                name: name,
+              ),
+            ],
           ),
-          title,
-          titleDate,
-          TransactionForm(
-            name: name,
-          ),
-        ],
+        ),
       ),
     );
   }

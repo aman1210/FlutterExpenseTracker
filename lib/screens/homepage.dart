@@ -23,6 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Home(changeVisibility, _isVisible),
       bottomNavigationBar: AnimatedContainer(
         duration: Duration(milliseconds: 300),

@@ -1,8 +1,10 @@
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/widgets/transactionPage/categoryPicker.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseTracker/widgets/transactionPage/datePicker.dart';
 import 'package:expenseTracker/widgets/transactionPage/mainFormEntry.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class TransactionForm extends StatefulWidget {
   TransactionForm({
@@ -62,33 +64,49 @@ class _TransactionFormState extends State<TransactionForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          child: Icon(FontAwesomeIcons.times),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(60),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
+                  GestureDetector(
+                    onTap: () {
+                      Provider.of<TransactionProvider>(context, listen: false)
+                          .cancelTransaction();
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            child: Icon(FontAwesomeIcons.times),
+                            decoration: BoxDecoration(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                              borderRadius: BorderRadius.circular(60),
                             ),
                           ),
-                        )
-                      ],
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Provider.of<TransactionProvider>(context, listen: false)
+                          .addTransaction();
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('hello'),
+                        ),
+                      );
+                    },
                     child: Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

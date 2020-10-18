@@ -45,17 +45,19 @@ class _DraggableCardState extends State<DraggableCard>
     super.dispose();
   }
 
-  void openBottomSheet(var string, BuildContext context) {
-    showModalBottomSheet(
-      // enableDrag: true,
-      isScrollControlled: true,
-      context: context,
-      builder: (context) {
-        return SafeArea(
-          child: MakeTansaction(string),
-        );
-      },
-    );
+  void openBottomSheet(var string, BuildContext context, Size size) {
+    // showModalBottomSheet(
+    //   // enableDrag: true,
+    //   // isScrollControlled: true,
+    //   context: context,
+    //   builder: (context) {
+    //     return SafeArea(
+    //       child: MakeTansaction(string),
+    //     );
+    //   },
+    // );
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => MakeTansaction(string, size)));
   }
 
   @override
@@ -73,10 +75,10 @@ class _DraggableCardState extends State<DraggableCard>
       onPanEnd: (details) {
         _runAnimation();
         if (_alignment.x < -0.7) {
-          openBottomSheet('Expense', context);
+          openBottomSheet('Expense', context, size);
         }
         if (_alignment.x > 0.7) {
-          openBottomSheet('Income', context);
+          openBottomSheet('Income', context, size);
         }
       },
       child: Align(

@@ -1,3 +1,4 @@
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,8 +29,24 @@ class _CategoryPickerState extends State<CategoryPicker> {
   @override
   void initState() {
     super.initState();
+    visible = false;
     category = Provider.of<CategoryProvider>(context, listen: false)
         .getCategory(widget.name);
+  }
+
+  setCategory() {
+    if (selectedCategory != 0) {
+      Provider.of<TransactionProvider>(context, listen: false).setCategory(
+        category[selectedCategory].categoryName,
+        category[selectedCategory].icon.codePoint,
+      );
+    }
+  }
+
+  changeVisibility() {
+    setState(() {
+      visible = !visible;
+    });
   }
 
   @override
@@ -75,10 +92,11 @@ class _CategoryPickerState extends State<CategoryPicker> {
             onTap: () {
               setState(() {
                 if (index == 0) {
-                  visible = true;
+                  visible = !visible;
                 }
                 selectedCategory = index;
               });
+              setCategory();
             },
             child: Column(
               children: [
@@ -134,6 +152,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
             name: widget.name,
             green: widget.green,
             blue: widget.blue,
+            changeVisibilty: changeVisibility,
           ),
         // if (visible) CustomIconPicker()
       ],

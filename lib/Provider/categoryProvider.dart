@@ -26,4 +26,19 @@ class CategoryProvider with ChangeNotifier {
     }
     return expenseCategory;
   }
+
+  void addCategory(String title, String listName) {
+    if (listName == 'Income') {
+      incomeCategory.insert(
+        1,
+        new CategoryModel(categoryName: title, icon: FontAwesomeIcons.userCog),
+      );
+    } else {
+      expenseCategory.insert(
+        1,
+        new CategoryModel(categoryName: title, icon: FontAwesomeIcons.userCog),
+      );
+    }
+    notifyListeners();
+  }
 }
