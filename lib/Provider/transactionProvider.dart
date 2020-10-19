@@ -15,6 +15,7 @@ class TransactionProvider with ChangeNotifier {
   int balance = 0;
 
   List<Transaction> transaction = [];
+  List<Transaction> expense = [];
 
   totalBalance() {
     balance = 0;
@@ -62,7 +63,7 @@ class TransactionProvider with ChangeNotifier {
     final tList = await TransactionHelper.getData();
     List<Transaction> _t = [];
     _t = tList.map((e) {
-      return Transaction(
+      var t = Transaction(
         transactionType:
             e['type'] == 0 ? TransactionType.Income : TransactionType.Expense,
         title: e['title'],
@@ -73,6 +74,11 @@ class TransactionProvider with ChangeNotifier {
         iconFamily: e['iconFamily'],
         iconPackage: e['iconPackage'],
       );
+      if (e['type'] == 1) {
+        expense.add(t);
+      }
+
+      return t;
     }).toList();
     transaction = _t.reversed.toList();
     totalBalance();

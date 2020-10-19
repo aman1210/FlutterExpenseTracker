@@ -48,6 +48,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var size = mediaQuery.size;
+
     List<Transaction> transaction =
         Provider.of<TransactionProvider>(context).transaction;
     // Provider.of<TransactionProvider>(context).totalBalance;
@@ -86,38 +87,29 @@ class _HomeState extends State<Home> {
       ),
     );
 
-    return CustomScrollView(
+    return ListView(
+      padding: const EdgeInsets.only(top: 0, bottom: 35),
       controller: _controller,
       shrinkWrap: true,
-      slivers: <Widget>[
-        new SliverPadding(
-          padding: const EdgeInsets.all(0),
-          sliver: new SliverList(
-            delegate: new SliverChildListDelegate(
-              <Widget>[
-                header,
-                SizedBox(
-                  height: 10,
-                ),
-                DragContainer(size),
-                if (transaction.length == 0)
-                  Image.asset('assets/images/search.png'),
-                if (transaction.length == 0)
-                  Text(
-                    'No Transactions Yet!!!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
-                  ),
-                if (transaction.length > 0)
-                  ...transaction.map((e) {
-                    return TListItem(
-                      e: e,
-                    );
-                  }).toList(),
-              ],
-            ),
-          ),
+      children: [
+        header,
+        SizedBox(
+          height: 10,
         ),
+        DragContainer(size),
+        if (transaction.length == 0) Image.asset('assets/images/search.png'),
+        if (transaction.length == 0)
+          Text(
+            'No Transactions Yet!!!',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
+        if (transaction.length > 0)
+          ...transaction.map((e) {
+            return TListItem(
+              e: e,
+            );
+          }).toList(),
       ],
     );
   }

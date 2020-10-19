@@ -1,4 +1,5 @@
 import 'package:expenseTracker/Provider/transactionProvider.dart';
+import 'package:expenseTracker/screens/statsPage.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -29,9 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
           future: Provider.of<TransactionProvider>(context, listen: false)
               .fetchAndSetTransaction(),
           builder: (context, snapshot) => Home(changeVisibility, _isVisible)),
-      Center(
-        child: Text('stats'),
-      ),
+      StatsPage(),
       Center(
         child: Text('profile'),
       ),
@@ -59,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               )
             : Container(
+                height: 100,
                 color: Colors.white,
                 width: double.infinity,
               ),

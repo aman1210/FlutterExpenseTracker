@@ -35,7 +35,6 @@ class _DragContainerState extends State<DragContainer>
     runAnimation();
     _controller.addListener(() {
       setState(() {
-        print(_animation.value);
         containerWidth = _animation.value;
       });
     });

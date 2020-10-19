@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       Duration(seconds: 3),
       () {
-        Navigator.of(context).push(_createRoute());
+        Navigator.of(context).pushReplacement(_createRoute());
       },
     );
   }
