@@ -30,11 +30,12 @@ class _DragContainerState extends State<DragContainer>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 250),
+      duration: Duration(milliseconds: 300),
     );
     runAnimation();
     _controller.addListener(() {
       setState(() {
+        print(_animation.value);
         containerWidth = _animation.value;
       });
     });

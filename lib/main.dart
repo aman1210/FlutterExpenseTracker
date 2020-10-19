@@ -1,5 +1,6 @@
 import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
+import 'package:expenseTracker/screens/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.amber,
           fontFamily: 'Poppins',
         ),
-        home: MyHomePage(),
+        home: SplashScreen(),
       ),
     );
   }

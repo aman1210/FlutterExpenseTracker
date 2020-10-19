@@ -46,16 +46,6 @@ class _DraggableCardState extends State<DraggableCard>
   }
 
   void openBottomSheet(var string, BuildContext context, Size size) {
-    // showModalBottomSheet(
-    //   // enableDrag: true,
-    //   // isScrollControlled: true,
-    //   context: context,
-    //   builder: (context) {
-    //     return SafeArea(
-    //       child: MakeTansaction(string),
-    //     );
-    //   },
-    // );
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => MakeTansaction(string, size)));
   }
