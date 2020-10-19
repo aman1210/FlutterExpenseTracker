@@ -1,11 +1,10 @@
-import 'package:expenseTracker/Provider/categoryProvider.dart';
-import 'package:expenseTracker/Provider/transactionProvider.dart';
-import 'package:expenseTracker/screens/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:expenseTracker/screens/homepage.dart';
 import 'package:provider/provider.dart';
+import 'package:expenseTracker/Provider/categoryProvider.dart';
+import 'package:expenseTracker/Provider/transactionProvider.dart';
+import 'package:expenseTracker/screens/splashScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
