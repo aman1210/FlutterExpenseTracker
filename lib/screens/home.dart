@@ -1,10 +1,12 @@
 import 'dart:math' as math;
 
 import 'package:expenseTracker/Model/transaction.dart';
+import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBground.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBalance.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderCard.dart';
+import 'package:expenseTracker/widgets/home/tListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -108,31 +110,8 @@ class _HomeState extends State<Home> {
                   ),
                 if (transaction.length > 0)
                   ...transaction.map((e) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Card(
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            child: Icon(
-                              IconData(
-                                e.icon,
-                                fontFamily: e.iconFamily,
-                                fontPackage: e.iconPackage,
-                              ),
-                              color: Colors.white,
-                              size: 22,
-                            ),
-                            backgroundColor:
-                                e.transactionType == TransactionType.Income
-                                    ? Colors.green
-                                    : Colors.red[400],
-                            radius: 28,
-                          ),
-                          title: Text(e.title),
-                          subtitle: Text(DateFormat.yMMMd().format(e.date)),
-                          trailing: Text('₹ ${e.amount.toString()}'),
-                        ),
-                      ),
+                    return TListItem(
+                      e: e,
                     );
                   }).toList(),
               ],

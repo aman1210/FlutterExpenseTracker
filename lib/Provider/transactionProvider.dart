@@ -1,3 +1,4 @@
+import 'package:expenseTracker/helper/transaction_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseTracker/Model/transaction.dart';
 
@@ -15,7 +16,10 @@ class TransactionProvider with ChangeNotifier {
 
   List<Transaction> transaction = [];
 
-  get totalBalance {
+  totalBalance() {
+    balance = 0;
+    spent = 0;
+    earned = 0;
     transaction.forEach((element) {
       if (element.transactionType == TransactionType.Income) {
         earned += element.amount;
@@ -24,11 +28,15 @@ class TransactionProvider with ChangeNotifier {
       }
     });
     balance = earned - spent;
+    notifyListeners();
   }
 
-  setTitle(String newtitle, int newamount) {
+  setTitle(String newtitle) {
     title = newtitle;
-    amount = newamount;
+  }
+
+  setAmount(int newAmount) {
+    amount = newAmount;
   }
 
   setCategory(String newCategory, int newicon, String iconF, String iconP) {
@@ -36,9 +44,6 @@ class TransactionProvider with ChangeNotifier {
     iconCode = newicon;
     iconFamily = iconF;
     iconPackage = iconP;
-    print(newicon);
-    print(iconF);
-    print(iconP);
   }
 
   setDate(DateTime newdateTime) {
@@ -53,11 +58,33 @@ class TransactionProvider with ChangeNotifier {
     category = null;
   }
 
+  Future<void> fetchAndSetTransaction() async {
+    final tList = await TransactionHelper.getData();
+    List<Transaction> _t = [];
+    _t = tList.map((e) {
+      return Transaction(
+        transactionType:
+            e['type'] == 0 ? TransactionType.Income : TransactionType.Expense,
+        title: e['title'],
+        amount: e['amount'],
+        category: e['category'],
+        icon: e['iconCode'],
+        date: DateTime.parse(e['date']),
+        iconFamily: e['iconFamily'],
+        iconPackage: e['iconPackage'],
+      );
+    }).toList();
+    transaction = _t.reversed.toList();
+    totalBalance();
+  }
+
   String addTransaction(TransactionType _t) {
     if (title == null) {
       return 'Please enter the title';
-    } else if (amount == null || amount <= 0) {
-      return 'Please enter a valid amount';
+    } else if (amount == null) {
+      return 'Please enter the amount';
+    } else if (amount <= 0) {
+      return 'Please enter a number greater than 0';
     } else if (category == null) {
       return 'Please select a category';
     }
@@ -79,6 +106,24 @@ class TransactionProvider with ChangeNotifier {
     }
     balance = earned - spent;
     notifyListeners();
+    TransactionHelper.insert(
+      title: title,
+      amount: amount,
+      category: category,
+      date: date.toIso8601String(),
+      iconCode: iconCode,
+      iconFamily: iconFamily,
+      iconPackage: iconPackage,
+      type: _t.index,
+    );
+    cancelTransaction();
     return '';
+  }
+
+  Future<void> delete(DateTime date) async {
+    transaction.removeWhere((element) => element.date == date);
+    TransactionHelper.delete(date.toIso8601String());
+
+    totalBalance();
   }
 }

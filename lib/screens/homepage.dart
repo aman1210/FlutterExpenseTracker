@@ -1,9 +1,11 @@
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:expenseTracker/screens/home.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -23,7 +25,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _list = [
-      Home(changeVisibility, _isVisible),
+      FutureBuilder(
+          future: Provider.of<TransactionProvider>(context, listen: false)
+              .fetchAndSetTransaction(),
+          builder: (context, snapshot) => Home(changeVisibility, _isVisible)),
       Center(
         child: Text('stats'),
       ),

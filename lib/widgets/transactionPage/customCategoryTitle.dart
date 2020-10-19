@@ -38,6 +38,7 @@ class _CustomCategoryTitleState extends State<CustomCategoryTitle> {
     _form.currentState.save();
     Provider.of<CategoryProvider>(context, listen: false)
         .addCategory(title, widget.name);
+    _form.currentState.reset();
     widget.changeVisibilty();
   }
 

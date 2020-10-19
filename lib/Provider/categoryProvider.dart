@@ -1,3 +1,4 @@
+import 'package:expenseTracker/helper/category_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Model/category.dart';
@@ -29,6 +30,47 @@ class CategoryProvider with ChangeNotifier {
     return expenseCategory;
   }
 
+  Future<void> fetchAndSetCategory() async {
+    final categoryList = await CategoryHelper.getData('category_todo');
+    categoryList.forEach((element) {
+      if (element['type'] == 0) {
+        incomeCategory.insert(
+          1,
+          new CategoryModel(
+            categoryName: element['title'],
+            icon: IconData(
+              element['iconCode'],
+              fontFamily: element['iconFamily'],
+              fontPackage: element['iconPackage'],
+            ),
+          ),
+        );
+      } else {
+        expenseCategory.insert(
+          1,
+          new CategoryModel(
+            categoryName: element['title'],
+            icon: IconData(
+              element['iconCode'],
+              fontFamily: element['iconFamily'],
+              fontPackage: element['iconPackage'],
+            ),
+          ),
+        );
+      }
+    });
+  }
+
+  // void deleteCategory(String name, String listName) async {
+  //   if (listName == 'Income') {
+  //     incomeCategory.removeWhere((element) => element.categoryName == name);
+  //   } else {
+  //     expenseCategory.removeWhere((element) => element.categoryName == name);
+  //   }
+  //   notifyListeners();
+  //   CategoryHelper.deleteCategory('category_todo', name);
+  // }
+
   void addCategory(String title, String listName) {
     if (listName == 'Income') {
       incomeCategory.insert(
@@ -42,5 +84,13 @@ class CategoryProvider with ChangeNotifier {
       );
     }
     notifyListeners();
+    CategoryHelper.inserting(
+      title: title,
+      table: 'category_todo',
+      iconCode: FontAwesomeIcons.userCog.codePoint,
+      iconFamily: FontAwesomeIcons.userCog.fontFamily,
+      iconPackage: FontAwesomeIcons.userCog.fontPackage,
+      type: listName == 'Income' ? 0 : 1,
+    );
   }
 }

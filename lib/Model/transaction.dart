@@ -16,12 +16,12 @@ class Transaction {
   final TransactionType transactionType;
 
   Transaction(
-      {this.transactionType,
-      this.title,
-      this.amount,
-      this.category,
-      this.icon,
-      this.date,
+      {@required this.transactionType,
+      @required this.title,
+      @required this.amount,
+      @required this.category,
+      @required this.icon,
+      @required this.date,
       @required this.iconFamily,
       @required this.iconPackage});
 }

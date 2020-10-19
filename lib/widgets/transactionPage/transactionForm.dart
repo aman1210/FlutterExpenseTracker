@@ -108,7 +108,13 @@ class _TransactionFormState extends State<TransactionForm> {
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            title: Text('Error'),
+                            title: Text(
+                              'Error',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             content: Text(msg),
                             actions: [
                               OutlineButton.icon(
