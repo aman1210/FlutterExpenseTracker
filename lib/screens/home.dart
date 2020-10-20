@@ -105,6 +105,14 @@ class _HomeState extends State<Home> {
             style: TextStyle(fontSize: 18),
           ),
         if (transaction.length > 0)
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 4, left: 20),
+            child: Text(
+              'Transactions',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+        if (transaction.length > 0)
           ...transaction.map((e) {
             return TListItem(
               e: e,

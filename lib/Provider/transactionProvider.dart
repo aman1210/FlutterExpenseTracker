@@ -132,4 +132,17 @@ class TransactionProvider with ChangeNotifier {
 
     totalBalance();
   }
+
+  List<Transaction> getTransactionInRange(DateTime start, DateTime end) {
+    List<Transaction> list = [];
+    transaction.forEach((t) {
+      if (t.transactionType == TransactionType.Expense &&
+          t.date.isAfter(start) &&
+          t.date.isBefore(end)) {
+        list.add(t);
+        // print(t.amount);
+      }
+    });
+    return list;
+  }
 }

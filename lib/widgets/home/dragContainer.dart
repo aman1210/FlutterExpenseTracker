@@ -126,7 +126,9 @@ class _DragContainerState extends State<DragContainer>
     );
 
     return Container(
-      margin: const EdgeInsets.only(top: 30, bottom: 20),
+      margin: const EdgeInsets.only(
+        top: 30,
+      ),
       child: Stack(
         alignment: Alignment.center,
         children: [
