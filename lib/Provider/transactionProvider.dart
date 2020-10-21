@@ -133,23 +133,16 @@ class TransactionProvider with ChangeNotifier {
     totalBalance();
   }
 
-  List<Transaction> getTransactionInRange(DateTime date) {
-    var start = DateTime(date.year, date.month, 1);
-    var endNum =
-        DateTime(date.year, date.month + 1, 0).compareTo(DateTime.now());
-    var end =
-        endNum > 0 ? DateTime.now() : DateTime(date.year, date.month + 1, 0);
+  List<Transaction> getTransactionInRange(DateTime d) {
+    var start = DateTime(d.year, d.month, 1);
+    var endNum = DateTime(d.year, d.month + 1, 0).compareTo(DateTime.now());
+    var end = endNum > 0 ? DateTime.now() : DateTime(d.year, d.month + 1, 0);
     List<Transaction> list = [];
-    print(start);
-    print(end);
     transaction.forEach((t) {
-      print('${t.date} ${t.amount}');
       if (t.date.isAfter(start) && t.date.isBefore(end)) {
-        // print(t.amount);
         list.add(t);
       }
     });
-
     return list;
   }
 }

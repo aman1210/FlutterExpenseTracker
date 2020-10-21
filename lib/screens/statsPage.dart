@@ -20,6 +20,8 @@ class _StatsPageState extends State<StatsPage> {
   List<Transaction> _list = [];
 
   generate(List<Transaction> t) {
+    _expenselist.clear();
+    _incomeList.clear();
     t.forEach((e) {
       if (e.transactionType == TransactionType.Expense) {
         _expenselist.add(e);
@@ -31,10 +33,11 @@ class _StatsPageState extends State<StatsPage> {
   }
 
   changeDate() {
-    // print(date);
     _list.clear();
     _list = Provider.of<TransactionProvider>(context, listen: false)
         .getTransactionInRange(date);
+    print(_list.length);
+
     generate(_list);
   }
 
@@ -46,7 +49,6 @@ class _StatsPageState extends State<StatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(_expenselist.length);
     return Container(
       color: Colors.purple[400],
       width: double.infinity,

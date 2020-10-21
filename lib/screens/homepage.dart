@@ -1,5 +1,6 @@
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/screens/statsPage.dart';
+import 'package:expenseTracker/widgets/fluidNavBar/fluid_nav_bar.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -41,21 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         duration: Duration(milliseconds: 300),
         height: _isVisible == true ? 60 : 0,
         child: _isVisible == true
-            ? FancyBottomNavigation(
-                inactiveIconColor: Colors.grey,
-                tabs: [
-                  TabData(iconData: FontAwesomeIcons.home, title: "Home"),
-                  TabData(iconData: FontAwesomeIcons.chartPie, title: "Stats"),
-                  TabData(
-                      iconData: FontAwesomeIcons.userAstronaut,
-                      title: "Profile"),
-                ],
-                onTabChangedListener: (position) {
-                  setState(() {
-                    _currentIndex = position;
-                  });
-                },
-              )
+            ? FluidNavBar(onChange: _handleNavigationChange)
             : Container(
                 height: 100,
                 color: Colors.white,
@@ -63,5 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
       ),
     );
+  }
+
+  void _handleNavigationChange(int selectedIndex) {
+    setState(() {
+      _currentIndex = selectedIndex;
+    });
   }
 }

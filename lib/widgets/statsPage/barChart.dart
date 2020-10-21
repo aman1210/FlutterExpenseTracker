@@ -46,21 +46,20 @@ class _BarChartState extends State<BarChart> {
     _series.clear();
     _series.add(
       charts.Series(
-          id: 'Transactions',
-          data: data,
-          domainFn: (TransactionChart t, _) => t.date,
-          measureFn: (TransactionChart t, _) => t.amount,
-          colorFn: (TransactionChart t, _) =>
-              charts.ColorUtil.fromDartColor(t.colorval),
-          labelAccessorFn: (TransactionChart t, _) =>
-              t.amount == 0 ? '' : '₹${t.amount.toString()}'),
+        id: 'Transactions',
+        data: data,
+        domainFn: (TransactionChart t, _) => t.date,
+        measureFn: (TransactionChart t, _) => t.amount,
+        colorFn: (TransactionChart t, _) =>
+            charts.ColorUtil.fromDartColor(t.colorval),
+        labelAccessorFn: (TransactionChart t, _) => t.amount == 0 ? '' : '',
+      ),
     );
   }
 
   @override
   void initState() {
     super.initState();
-    // print(widget.list.length);
     _series = List<charts.Series<TransactionChart, String>>();
     generate();
   }
@@ -68,7 +67,6 @@ class _BarChartState extends State<BarChart> {
   @override
   void didUpdateWidget(covariant BarChart oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // print(widget.list.length);
     _series = List<charts.Series<TransactionChart, String>>();
     generate();
   }
@@ -85,12 +83,13 @@ class _BarChartState extends State<BarChart> {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-              width: 1.5 * 40 * data.length,
+              width: 1.5 * 30 * data.length,
               child: charts.BarChart(
                 _series,
                 animate: true,
                 barRendererDecorator: new charts.BarLabelDecorator<String>(
-                    labelPosition: charts.BarLabelPosition.inside),
+                    labelPosition: charts.BarLabelPosition.inside,
+                    labelAnchor: charts.BarLabelAnchor.middle),
                 domainAxis: new charts.OrdinalAxisSpec(),
               ),
             ),
