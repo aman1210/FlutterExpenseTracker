@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:expenseTracker/Model/transaction.dart';
-import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBground.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBalance.dart';
@@ -10,9 +9,7 @@ import 'package:expenseTracker/widgets/home/tListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:expenseTracker/widgets/home/dragContainer.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {

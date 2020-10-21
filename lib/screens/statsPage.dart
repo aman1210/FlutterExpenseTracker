@@ -1,7 +1,7 @@
-import 'package:expenseTracker/Model/category.dart';
 import 'package:expenseTracker/Model/transaction.dart';
-import 'package:expenseTracker/Provider/categoryProvider.dart';
+
 import 'package:expenseTracker/Provider/transactionProvider.dart';
+import 'package:expenseTracker/widgets/statsPage/barChart.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
@@ -15,61 +15,42 @@ class StatsPage extends StatefulWidget {
 
 class _StatsPageState extends State<StatsPage> {
   var date = DateTime.now();
-  List<charts.Series<TransactionChart, num>> _series;
+  List<Transaction> _expenselist = [];
+  List<Transaction> _incomeList = [];
   List<Transaction> _list = [];
-  List<TransactionChart> data = [];
 
-  generate() {
-    var start = DateTime(date.year, date.month, 1);
-    var endNum =
-        DateTime(date.year, date.month + 1, 0).compareTo(DateTime.now());
-    var end =
-        endNum > 0 ? DateTime.now() : DateTime(date.year, date.month + 1, 0);
-    data.clear();
-    data.add(TransactionChart(0, 0));
-    var sum = 0;
-    for (var i = start.day; i <= end.day; i++) {
-      var x = 0;
-      _list.map(
-        (t) {
-          if (t.transactionType == TransactionType.Expense &&
-              t.date.isAfter(start) &&
-              t.date.isBefore(end) &&
-              t.date.day == i) {
-            sum += t.amount;
-            x += t.amount;
-          }
-        },
-      ).toList();
-      if (x > 0) data.add(TransactionChart(i, sum));
-    }
-    String month = DateFormat.MMM().format(date);
-    _series.clear();
-    _series.add(
-      charts.Series(
-        id: 'Transactions',
-        data: data,
-        domainFn: (TransactionChart t, _) => t.date,
-        measureFn: (TransactionChart t, _) => t.amount,
-      ),
-    );
+  generate(List<Transaction> t) {
+    t.forEach((e) {
+      if (e.transactionType == TransactionType.Expense) {
+        _expenselist.add(e);
+      } else {
+        _incomeList.add(e);
+      }
+    });
+    setState(() {});
+  }
+
+  changeDate() {
+    // print(date);
+    _list.clear();
+    _list = Provider.of<TransactionProvider>(context, listen: false)
+        .getTransactionInRange(date);
+    generate(_list);
   }
 
   @override
   void initState() {
     super.initState();
-    _list =
-        Provider.of<TransactionProvider>(context, listen: false).transaction;
-
-    _series = List<charts.Series<TransactionChart, num>>();
-    generate();
+    changeDate();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(_expenselist.length);
     return Container(
+      color: Colors.purple[400],
       width: double.infinity,
-      height: 500,
+      height: double.maxFinite,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -86,40 +67,22 @@ class _StatsPageState extends State<StatsPage> {
               setState(
                 () {
                   date = picked;
-                  generate();
+                  changeDate();
                 },
               );
             },
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: charts.LineChart(
-                _series,
-                animate: true,
-                animationDuration: Duration(milliseconds: 300),
-                defaultRenderer: charts.LineRendererConfig(
-                  includeArea: true,
-                  includePoints: true,
-                  includeLine: true,
-                ),
-                behaviors: [
-                  charts.ChartTitle(
-                    'Spent',
-                    behaviorPosition: charts.BehaviorPosition.bottom,
-                  )
-                ],
-              ),
-            ),
+          BarChart(
+            date: date,
+            list: _expenselist,
           ),
+          Expanded(
+            child: Center(
+              child: Text('hello'),
+            ),
+          )
         ],
       ),
     );
   }
-}
-
-class TransactionChart {
-  num date;
-  int amount;
-  TransactionChart(this.date, this.amount);
 }
