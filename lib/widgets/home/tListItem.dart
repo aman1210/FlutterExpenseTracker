@@ -7,10 +7,8 @@ import 'package:provider/provider.dart';
 
 class TListItem extends StatelessWidget {
   final Transaction e;
-  const TListItem({
-    Key key,
-    this.e,
-  }) : super(key: key);
+  final Function cV;
+  const TListItem({Key key, this.e, this.cV}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +62,7 @@ class TListItem extends StatelessWidget {
                     onPressed: () {
                       Provider.of<TransactionProvider>(context, listen: false)
                           .delete(e.date);
+                      cV(true);
                       Navigator.of(context).pop(true);
                     },
                     icon: Icon(Icons.check),

@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
         overflow: Overflow.visible,
         children: [
           HomeHeaderBackground(
-            visible: widget.visible,
+            // visible: widget.visible,
             height: size.height * 0.35,
           ),
           HomeHeaderBalance(),
@@ -84,38 +84,58 @@ class _HomeState extends State<Home> {
       ),
     );
 
-    return ListView(
-      padding: const EdgeInsets.only(top: 0, bottom: 35),
-      controller: _controller,
-      shrinkWrap: true,
-      children: [
-        header,
-        SizedBox(
-          height: 10,
-        ),
-        DragContainer(size),
-        if (transaction.length == 0) Image.asset('assets/images/search.png'),
-        if (transaction.length == 0)
-          Text(
-            'No Transactions Yet!!!',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18),
+    return Container(
+      height: size.height,
+      child: Column(
+        children: [
+          header,
+          SizedBox(
+            height: 10,
           ),
-        if (transaction.length > 0)
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0, bottom: 4, left: 20),
-            child: Text(
-              'Transactions',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          DragContainer(size),
+          if (transaction.length == 0)
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Image.asset(
+                'assets/images/search.png',
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-        if (transaction.length > 0)
-          ...transaction.map((e) {
-            return TListItem(
-              e: e,
-            );
-          }).toList(),
-      ],
+          if (transaction.length == 0)
+            Text(
+              'No Transactions Yet!!!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+          if (transaction.length > 0)
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 4, left: 20),
+              child: Text(
+                'Transactions',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+          if (transaction.length > 0)
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 20),
+                controller: _controller,
+                child: Column(
+                  children: [
+                    ...transaction.map(
+                      (e) {
+                        return TListItem(
+                          e: e,
+                          cV: widget.cV,
+                        );
+                      },
+                    ).toList(),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -1,12 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:expenseTracker/screens/home.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/screens/statsPage.dart';
 import 'package:expenseTracker/widgets/fluidNavBar/fluid_nav_bar.dart';
-import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:expenseTracker/screens/home.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -36,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: true,
       body: _list[_currentIndex],
       bottomNavigationBar: AnimatedContainer(
