@@ -2,21 +2,17 @@ import 'package:bezier_chart/bezier_chart.dart';
 import 'package:expenseTracker/Model/transaction.dart';
 import 'package:flutter/material.dart';
 
-class BrezzierChart extends StatefulWidget {
+class BrezzierChart extends StatelessWidget {
   final List<Transaction> list;
   BrezzierChart(this.list);
-  @override
-  _BrezzierChartState createState() => _BrezzierChartState();
-}
 
-class _BrezzierChartState extends State<BrezzierChart> {
   List<DataPoint<DateTime>> _expensepoints = [];
   List<DataPoint<DateTime>> _incomepoints = [];
 
   generate() {
     _expensepoints = [];
     _incomepoints = [];
-    widget.list.forEach((e) {
+    list.forEach((e) {
       if (e.transactionType == TransactionType.Expense) {
         _expensepoints.add(
             DataPoint<DateTime>(value: e.amount.toDouble(), xAxis: e.date));
@@ -28,30 +24,22 @@ class _BrezzierChartState extends State<BrezzierChart> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    generate();
-  }
-
-  var currentDate = DateTime.now();
-  @override
   Widget build(BuildContext context) {
     final toDate = DateTime.now();
     final fromDate = DateTime(DateTime.now().year - 1);
-
+    generate();
     return Container(
-      // margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
               color: Colors.black38,
-              offset: Offset(0, 5),
-              blurRadius: 10,
-              spreadRadius: 5)
+              offset: Offset(0, 4),
+              blurRadius: 8,
+              spreadRadius: 4)
         ],
         color: Colors.deepPurple,
       ),
-      height: 350,
+      // height: 400,
       width: MediaQuery.of(context).size.width,
       child: BezierChart(
         fromDate: fromDate,
@@ -93,7 +81,7 @@ class _BrezzierChartState extends State<BrezzierChart> {
           pinchZoom: true,
           bubbleIndicatorColor: Colors.white,
           backgroundColor: Colors.deepPurple,
-          footerHeight: 50.0,
+          footerHeight: 40.0,
         ),
       ),
     );

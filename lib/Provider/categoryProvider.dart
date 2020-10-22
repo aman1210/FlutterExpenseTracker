@@ -61,16 +61,6 @@ class CategoryProvider with ChangeNotifier {
     });
   }
 
-  // void deleteCategory(String name, String listName) async {
-  //   if (listName == 'Income') {
-  //     incomeCategory.removeWhere((element) => element.categoryName == name);
-  //   } else {
-  //     expenseCategory.removeWhere((element) => element.categoryName == name);
-  //   }
-  //   notifyListeners();
-  //   CategoryHelper.deleteCategory('category_todo', name);
-  // }
-
   void addCategory(String title, String listName) {
     if (listName == 'Income') {
       incomeCategory.insert(

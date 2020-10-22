@@ -8,7 +8,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class PieChart extends StatefulWidget {
   final List<Transaction> list;
   final double total;
-  PieChart(this.list, this.total);
+  final TransactionType type;
+  PieChart(this.list, this.total, this.type);
   @override
   _PieChartState createState() => _PieChartState();
 }
@@ -18,8 +19,9 @@ class _PieChartState extends State<PieChart> {
   @override
   void initState() {
     super.initState();
-    categories =
-        Provider.of<CategoryProvider>(context, listen: false).expenseCategory;
+    categories = widget.type == TransactionType.Expense
+        ? Provider.of<CategoryProvider>(context, listen: false).expenseCategory
+        : Provider.of<CategoryProvider>(context, listen: false).incomeCategory;
   }
 
   @override
@@ -27,31 +29,37 @@ class _PieChartState extends State<PieChart> {
     return _getDefaultPieChart();
   }
 
-  /// Returns the circular  chart with pie series.
   SfCircularChart _getDefaultPieChart() {
-    var isCardView = false;
     return SfCircularChart(
-      title: ChartTitle(text: isCardView ? '' : 'Sales by sales person'),
-      legend: Legend(isVisible: !isCardView),
+      legend: Legend(isVisible: true),
       series: _getDefaultPieSeries(),
     );
   }
 
-  /// Returns the pie series.
   List<PieSeries<ChartSampleData, String>> _getDefaultPieSeries() {
     final List<ChartSampleData> pieData = <ChartSampleData>[];
-    categories.forEach((c) {
-      int ctotal = 0;
-      widget.list.forEach((t) {
-        if (t.category == c.categoryName) {
-          ctotal += t.amount;
+    categories.forEach(
+      (c) {
+        int ctotal = 0;
+        if (c.categoryName != "Other") {
+          widget.list.forEach(
+            (t) {
+              if (t.category == c.categoryName) {
+                ctotal += t.amount;
+              }
+            },
+          );
+          pieData.add(
+            ChartSampleData(
+                x: c.categoryName,
+                y: ctotal / widget.total,
+                text: ctotal == 0
+                    ? ''
+                    : '${((ctotal / widget.total) * 100).toStringAsPrecision(3)}%'),
+          );
         }
-      });
-      pieData.add(
-        ChartSampleData(
-            x: c.categoryName, y: ctotal / widget.total, text: '$ctotal'),
-      );
-    });
+      },
+    );
     return <PieSeries<ChartSampleData, String>>[
       PieSeries<ChartSampleData, String>(
           explode: true,
@@ -63,7 +71,7 @@ class _PieChartState extends State<PieChart> {
           dataLabelMapper: (ChartSampleData data, _) => data.text,
           startAngle: 90,
           endAngle: 90,
-          explodeAll: true,
+          // explodeAll: true,
           dataLabelSettings: DataLabelSettings(isVisible: true)),
     ];
   }
