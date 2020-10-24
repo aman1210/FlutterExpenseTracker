@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -23,14 +25,16 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     loadImages();
     super.initState();
+    Provider.of<CategoryProvider>(context, listen: false).fetchAndSetCategory();
   }
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        width: double.infinity,
+        height: width.height,
+        width: width.width,
         color: Theme.of(context).primaryColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
             LottieBuilder.asset(
               'assets/images/saving.json',
               frameRate: FrameRate.max,
-              width: width * 0.8,
+              width: width.width * 0.8,
             ),
           ],
         ),

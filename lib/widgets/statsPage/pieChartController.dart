@@ -67,24 +67,27 @@ class _PIEState extends State<PIE> {
             child: Column(
               children: [
                 buildPieHeader('Expense'),
-                _expenselist.length == 0
-                    ? Image.asset(
-                        'assets/images/noData.png',
-                        height: 300,
-                      )
-                    : Row(
-                        children: [
-                          Expanded(
-                              child: PieChart(_expenselist, expensetotal,
-                                  TransactionType.Expense)),
-                          IconButton(
-                            icon: Icon(Icons.chevron_right),
-                            onPressed: () {
-                              changeDirection();
-                            },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _expenselist.length == 0
+                        ? Image.asset(
+                            'assets/images/noData.png',
+                            height: 300,
+                          )
+                        : Expanded(
+                            child: PieChart(_expenselist, expensetotal,
+                                TransactionType.Expense),
                           ),
-                        ],
-                      ),
+                    IconButton(
+                      padding: const EdgeInsets.all(0),
+                      icon: Icon(Icons.chevron_right),
+                      onPressed: () {
+                        changeDirection();
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           )
@@ -93,22 +96,30 @@ class _PIEState extends State<PIE> {
             child: Column(
               children: [
                 buildPieHeader('Income'),
-                _incomeList.length == 0
-                    ? Image.asset('assets/images/noData.png')
-                    : Row(
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.chevron_left),
-                            onPressed: () {
-                              changeDirection();
-                            },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                      padding: const EdgeInsets.all(0),
+                      icon: Icon(Icons.chevron_left),
+                      onPressed: () {
+                        changeDirection();
+                      },
+                    ),
+                    _incomeList.length == 0
+                        ? Image.asset(
+                            'assets/images/noData.png',
+                            height: 300,
+                          )
+                        : Expanded(
+                            child: PieChart(
+                              _incomeList,
+                              incometotal,
+                              TransactionType.Income,
+                            ),
                           ),
-                          Expanded(
-                            child: PieChart(_incomeList, incometotal,
-                                TransactionType.Income),
-                          ),
-                        ],
-                      ),
+                  ],
+                ),
               ],
             ),
           );
@@ -118,15 +129,19 @@ class _PIEState extends State<PIE> {
     return Container(
       margin: const EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(width: 1, color: Colors.black38))),
+        border: Border(
+          bottom: BorderSide(width: 1, color: Colors.black38),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           IconButton(
-              icon: Icon(FontAwesomeIcons.arrowCircleLeft),
-              onPressed: () {
-                changeDate(-1);
-              }),
+            icon: Icon(FontAwesomeIcons.arrowCircleLeft),
+            onPressed: () {
+              changeDate(-1);
+            },
+          ),
           Text(
             '$title in ${DateFormat.yMMM().format(date)}',
             style: TextStyle(
