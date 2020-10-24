@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class PIE extends StatefulWidget {
+  final Size size;
+  PIE(this.size);
   @override
   _PIEState createState() => _PIEState();
 }
@@ -73,7 +75,7 @@ class _PIEState extends State<PIE> {
                     _expenselist.length == 0
                         ? Image.asset(
                             'assets/images/noData.png',
-                            height: 300,
+                            width: widget.size.width - 60,
                           )
                         : Expanded(
                             child: PieChart(_expenselist, expensetotal,
@@ -109,7 +111,7 @@ class _PIEState extends State<PIE> {
                     _incomeList.length == 0
                         ? Image.asset(
                             'assets/images/noData.png',
-                            height: 300,
+                            width: widget.size.width - 60,
                           )
                         : Expanded(
                             child: PieChart(

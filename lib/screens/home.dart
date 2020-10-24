@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
     );
 
     return Container(
-      height: size.height,
+      // height: size.height,
       child: Column(
         children: [
           header,
@@ -94,11 +94,13 @@ class _HomeState extends State<Home> {
           ),
           DragContainer(size),
           if (transaction.length == 0)
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Image.asset(
-                'assets/images/search.png',
-                fit: BoxFit.contain,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Image.asset(
+                  'assets/images/search.png',
+                  // fit: BoxFit.contain,
+                ),
               ),
             ),
           if (transaction.length == 0)

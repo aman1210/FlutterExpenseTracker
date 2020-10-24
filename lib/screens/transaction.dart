@@ -40,13 +40,15 @@ class MakeTansaction extends StatelessWidget {
     );
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Container(
-          height: size.height,
-          padding: const EdgeInsets.only(top: 50),
+      body: Container(
+        // margin: const EdgeInsets.only(top: 50),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 50,
+              ),
               backArrow,
               SizedBox(
                 height: 20,

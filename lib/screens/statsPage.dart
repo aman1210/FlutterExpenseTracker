@@ -19,20 +19,21 @@ class StatsPage extends StatelessWidget {
       ),
       body: Container(
         color: Colors.purple[50],
-        width: size.width,
-        height: size.height,
-        child: Column(
-          children: [
-            Expanded(
-              child: BrezzierChart(
-                _list,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 400,
+                child: BrezzierChart(
+                  _list,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            PIE(),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              PIE(size),
+            ],
+          ),
         ),
       ),
     );
