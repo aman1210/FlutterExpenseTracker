@@ -32,20 +32,23 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        height: width.height,
-        width: width.width,
-        color: Theme.of(context).primaryColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LottieBuilder.asset(
-              'assets/images/saving.json',
-              frameRate: FrameRate.max,
-              width: width.width * 0.8,
+      body: Center(
+        child: Container(
+          // width: double.infinity,
+          color: Theme.of(context).primaryColor,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LottieBuilder.asset(
+                  'assets/images/saving.json',
+                  frameRate: FrameRate.max,
+                  width: width.width * 0.8,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -18,12 +18,12 @@ class StatsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        color: Colors.purple[50],
+        // color: Colors.purple[50],
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                height: 400,
+                height: 350,
                 child: BrezzierChart(
                   _list,
                 ),

@@ -75,7 +75,10 @@ class _TransactionFormState extends State<TransactionForm> {
                         Container(
                           height: 60,
                           width: 60,
-                          child: Icon(FontAwesomeIcons.times),
+                          child: Icon(
+                            FontAwesomeIcons.times,
+                            color: Colors.black,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(60),
@@ -119,8 +122,14 @@ class _TransactionFormState extends State<TransactionForm> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: Icon(Icons.check),
-                              label: Text('Okay!'),
+                              icon: Icon(
+                                Icons.check,
+                                color: Colors.black,
+                              ),
+                              label: Text(
+                                'Okay!',
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
                           ],
                         ),
@@ -136,11 +145,17 @@ class _TransactionFormState extends State<TransactionForm> {
                         Container(
                           height: 60,
                           width: 60,
-                          child: Icon(FontAwesomeIcons.check),
+                          child: Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.black,
+                          ),
                         ),
                         Container(
                           padding: const EdgeInsets.only(left: 5, right: 15),
-                          child: Text('Add ${widget.name}'),
+                          child: Text(
+                            'Add ${widget.name}',
+                            style: TextStyle(color: Colors.black),
+                          ),
                         )
                       ],
                     ),

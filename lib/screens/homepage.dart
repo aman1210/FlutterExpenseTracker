@@ -1,3 +1,4 @@
+import 'package:expenseTracker/screens/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,12 +30,10 @@ class _MyHomePageState extends State<MyHomePage> {
               .fetchAndSetTransaction(),
           builder: (context, snapshot) => Home(changeVisibility, _isVisible)),
       StatsPage(),
-      Center(
-        child: Text('profile'),
-      ),
+      ProfilePage(),
     ];
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      // backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: true,
       body: _list[_currentIndex],
       bottomNavigationBar: AnimatedContainer(

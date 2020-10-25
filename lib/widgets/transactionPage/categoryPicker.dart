@@ -77,6 +77,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
             child: Icon(
               Icons.search,
               size: 20,
+              color: Colors.black,
             ),
           ),
         ],

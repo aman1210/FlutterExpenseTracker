@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         title: 'Expense Tracker',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          // brightness: Brightness.dark,
           primarySwatch: Colors.deepPurple,
           accentColor: Colors.amber,
           fontFamily: 'Poppins',
