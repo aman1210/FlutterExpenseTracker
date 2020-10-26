@@ -69,18 +69,19 @@ class BrezzierChart extends StatelessWidget {
           verticalIndicatorColor: Colors.black26,
           showVerticalIndicator: true,
           verticalIndicatorFixedPosition: false,
-          backgroundGradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[300],
-              Colors.deepPurple,
-            ],
-          ),
+
+          // backgroundGradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: [
+          //     Colors.purple[300],
+          //     Colors.deepPurple,
+          //   ],
+          // ),
           displayDataPointWhenNoValue: true,
           pinchZoom: true,
           bubbleIndicatorColor: Colors.white,
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Theme.of(context).primaryColor,
           footerHeight: 40.0,
         ),
       ),

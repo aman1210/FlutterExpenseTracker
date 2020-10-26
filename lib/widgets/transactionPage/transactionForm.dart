@@ -37,6 +37,7 @@ class _TransactionFormState extends State<TransactionForm> {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(top: 20),
+      constraints: BoxConstraints(minHeight: 650),
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -47,6 +48,7 @@ class _TransactionFormState extends State<TransactionForm> {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
           formHeading,
           DatePicker(),
@@ -56,9 +58,9 @@ class _TransactionFormState extends State<TransactionForm> {
             green: green,
             blue: blue,
           ),
+          // Spacer(),
           Container(
-            alignment: Alignment.bottomCenter,
-            margin: const EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 40),
             width: double.infinity,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

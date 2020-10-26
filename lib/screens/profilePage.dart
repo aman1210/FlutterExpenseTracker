@@ -1,4 +1,6 @@
+import 'package:expenseTracker/screens/SavedCard.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -23,7 +25,7 @@ class ProfilePage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                   color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.grey[900]
+                      ? Colors.grey[800]
                       : Colors.grey[50],
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
@@ -38,8 +40,74 @@ class ProfilePage extends StatelessWidget {
                   ]),
               width: size.width,
               height: size.height - 200,
-              child: Center(
-                child: Text('hello'),
+              padding: const EdgeInsets.only(top: 60),
+              child: Column(
+                children: [
+                  Text('name'),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black38, width: 1),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Dark Mode'),
+                        Switch(value: true, onChanged: (val) {})
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Daily Remainder to add transactions'),
+                        Switch(
+                          value: false,
+                          onChanged: (value) {},
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black26, width: 1),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Saved Cards',
+                          textAlign: TextAlign.start,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          child: FlatButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SavedCard(),
+                                  ));
+                            },
+                            child: Text('Show'),
+                            color: Colors.amber,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
             top: top,
