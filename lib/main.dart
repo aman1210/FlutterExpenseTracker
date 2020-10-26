@@ -1,3 +1,4 @@
+import 'package:expenseTracker/Provider/cardProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (ctx) => CategoryProvider()),
         ChangeNotifierProvider(create: (ctx) => TransactionProvider()),
+        ChangeNotifierProvider(create: (ctx) => CardProvider()),
       ],
       child: MaterialApp(
         locale: Locale('en'),
