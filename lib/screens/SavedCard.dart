@@ -41,12 +41,16 @@ class _SavedCardState extends State<SavedCard> {
           ),
         ],
       ),
-      body: Center(
-        child: CreditCardSlider(
-          _creditCard,
-          repeatCards: RepeatCards.bothDirection,
-        ),
-      ),
+      body: _creditCard.length == 0
+          ? Center(
+              child: Text('No Card Saved Yet!'),
+            )
+          : Center(
+              child: CreditCardSlider(
+                _creditCard,
+                repeatCards: RepeatCards.bothDirection,
+              ),
+            ),
     );
   }
 }

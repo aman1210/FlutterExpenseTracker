@@ -1,3 +1,4 @@
+import 'package:expenseTracker/screens/editProfile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -91,7 +92,13 @@ class ProfileHeader extends StatelessWidget {
                             Icons.edit,
                             size: 20,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => EditProfile(),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     )

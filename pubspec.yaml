@@ -31,7 +31,7 @@ dependencies:
   font_awesome_flutter: ^8.10.0
   bezier_chart: "^1.0.16"
   syncfusion_flutter_charts: ^18.3.42
-  # image_picker: ^0.6.7+12
+  image_picker: ^0.6.7+12
   credit_card_slider: ^1.0.1
 
   # The following adds the Cupertino Icons font to your application.

@@ -6,18 +6,7 @@ import 'package:credit_card_slider/validity.dart';
 import 'package:flutter/material.dart';
 
 class CardProvider with ChangeNotifier {
-  List<CreditCard> cards = [
-    CreditCard(
-      cardBackground: SolidColorCardBackground(Colors.purple),
-      cardHolderName: 'Aman Srivastava',
-      cardNetworkType: CardNetworkType.visa,
-      company: CardCompany.sbi,
-      validity: Validity(
-        validThruMonth: 2,
-        validThruYear: 22,
-      ),
-    ),
-  ];
+  List<CreditCard> cards = [];
 
   void addCard(CreditCard card) {
     cards.add(card);

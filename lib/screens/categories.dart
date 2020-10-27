@@ -57,6 +57,10 @@ class ManageCategories extends StatelessWidget {
                     ),
                   )
                   .toList(),
+              Text(
+                '*Preloaded categories will return after you restart the app.',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
             ],
           ),
         ),
