@@ -1,3 +1,4 @@
+import 'package:expenseTracker/widgets/profilePage/darkModeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseTracker/screens/SavedCard.dart';
 import 'package:expenseTracker/widgets/profilePage/header.dart';
@@ -13,38 +14,7 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  child: Icon(
-                    FontAwesomeIcons.moon,
-                    color: Colors.white,
-                  ),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          const Color.fromRGBO(114, 30, 224, 1),
-                          const Color.fromRGBO(160, 46, 185, 1),
-                        ],
-                        stops: [0.5, 0.9],
-                      ),
-                      borderRadius: BorderRadius.circular(5)),
-                ),
-                Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Dark Mode'),
-                )),
-                Switch(value: true, onChanged: (val) {})
-              ],
-            ),
-          ),
+          DarkModeSwitch(),
 
           // Container(
           //   margin: const EdgeInsets.symmetric(horizontal: 20),

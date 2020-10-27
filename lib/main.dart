@@ -1,4 +1,5 @@
 import 'package:expenseTracker/Provider/cardProvider.dart';
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,25 +21,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (ctx) => ProfileProvider()),
         ChangeNotifierProvider(create: (ctx) => CategoryProvider()),
         ChangeNotifierProvider(create: (ctx) => TransactionProvider()),
         ChangeNotifierProvider(create: (ctx) => CardProvider()),
       ],
-      child: MaterialApp(
-        locale: Locale('en'),
-        supportedLocales: [
-          Locale('en'),
-        ],
-        title: 'Expense Tracker',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.amber,
-          fontFamily: 'Poppins',
-        ),
-        home: SplashScreen(),
-      ),
+      child: Consumer<ProfileProvider>(builder: (context, value, _) {
+        return MaterialApp(
+          locale: Locale('en'),
+          supportedLocales: [
+            Locale('en'),
+          ],
+          title: 'Expense Tracker',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            brightness: value.isDark ? Brightness.dark : Brightness.light,
+            primarySwatch: Colors.deepPurple,
+            accentColor: Colors.amber,
+            fontFamily: 'Poppins',
+          ),
+          home: SplashScreen(),
+        );
+      }),
     );
   }
 }
