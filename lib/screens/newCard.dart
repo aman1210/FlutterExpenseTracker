@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:credit_card_slider/card_background.dart';
 import 'package:credit_card_slider/card_company.dart';
@@ -21,6 +22,41 @@ class AddCard extends StatefulWidget {
 }
 
 class _AddCardState extends State<AddCard> {
+  List<CardBackground> _background = [
+    GradientCardBackground(
+      LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Colors.blue[300],
+          Colors.pink[300],
+        ],
+      ),
+    ),
+    GradientCardBackground(
+      LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Color(0xff08AEEA),
+          Color(0xff2AF598),
+        ],
+      ),
+    ),
+    GradientCardBackground(
+      LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Color(0xffDE6262),
+          Color(0xffFFB88C),
+        ],
+      ),
+    ),
+    SolidColorCardBackground(Colors.black87),
+    SolidColorCardBackground(Colors.blue),
+    SolidColorCardBackground(Colors.lime),
+  ];
   var _scaffoldKey = new GlobalKey<ScaffoldState>();
   var _formKey = new GlobalKey<FormState>();
   var numberController = new TextEditingController();
@@ -46,8 +82,9 @@ class _AddCardState extends State<AddCard> {
       return;
     }
     _formKey.currentState.save();
+    var random = Random();
     var card = CreditCard(
-      cardBackground: SolidColorCardBackground(Colors.purple),
+      cardBackground: _background[random.nextInt(_background.length)],
       cardHolderName: cardHolderName,
       cardNumber: cardNumber,
       company: company,

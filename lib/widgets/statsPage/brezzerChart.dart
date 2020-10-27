@@ -73,13 +73,21 @@ class BrezzierChart extends StatelessWidget {
           verticalIndicatorFixedPosition: false,
           backgroundGradient:
               Provider.of<ProfileProvider>(context).isDark == true
-                  ? null
+                  ? LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.grey[800],
+                        Colors.black,
+                      ],
+                      stops: [0.1, 0.9],
+                    )
                   : LinearGradient(
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        Colors.blue[800],
                         Colors.deepPurple,
+                        Colors.blue[800],
                       ],
                       stops: [0.1, 0.9],
                     ),
