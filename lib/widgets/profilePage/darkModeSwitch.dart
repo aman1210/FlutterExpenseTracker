@@ -24,7 +24,6 @@ class _DarkModeSwitchState extends State<DarkModeSwitch> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     isDark = Provider.of<ProfileProvider>(context, listen: false).isDark;
   }

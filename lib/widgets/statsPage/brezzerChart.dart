@@ -1,6 +1,8 @@
 import 'package:bezier_chart/bezier_chart.dart';
 import 'package:expenseTracker/Model/transaction.dart';
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BrezzierChart extends StatelessWidget {
   final List<Transaction> list;
@@ -69,15 +71,18 @@ class BrezzierChart extends StatelessWidget {
           verticalIndicatorColor: Colors.black26,
           showVerticalIndicator: true,
           verticalIndicatorFixedPosition: false,
-
-          // backgroundGradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [
-          //     Colors.purple[300],
-          //     Colors.deepPurple,
-          //   ],
-          // ),
+          backgroundGradient:
+              Provider.of<ProfileProvider>(context).isDark == true
+                  ? null
+                  : LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.blue[800],
+                        Colors.deepPurple,
+                      ],
+                      stops: [0.1, 0.9],
+                    ),
           displayDataPointWhenNoValue: true,
           pinchZoom: true,
           bubbleIndicatorColor: Colors.white,

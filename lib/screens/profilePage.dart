@@ -1,3 +1,4 @@
+import 'package:expenseTracker/screens/categories.dart';
 import 'package:expenseTracker/widgets/profilePage/darkModeSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseTracker/screens/SavedCard.dart';
@@ -15,7 +16,55 @@ class ProfilePage extends StatelessWidget {
             height: 20,
           ),
           DarkModeSwitch(),
-
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  child: Icon(
+                    FontAwesomeIcons.networkWired,
+                    color: Colors.white,
+                  ),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          const Color.fromRGBO(114, 30, 224, 1),
+                          const Color.fromRGBO(160, 46, 185, 1),
+                        ],
+                        stops: [0.5, 0.9],
+                      ),
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Manage Categories',
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                ),
+                Container(
+                    // margin: const EdgeInsets.symmetric(horizontal: 10),
+                    child: IconButton(
+                  icon: Icon(Icons.chevron_right),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ManageCategories(),
+                      ),
+                    );
+                  },
+                )),
+              ],
+            ),
+          ),
           // Container(
           //   margin: const EdgeInsets.symmetric(horizontal: 20),
           //   child: Row(
@@ -31,7 +80,9 @@ class ProfilePage extends StatelessWidget {
           // ),
 
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
             decoration: BoxDecoration(),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,6 +131,7 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
+          Expanded(child: Container()),
           Align(
             alignment: Alignment.bottomCenter,
             child: Text('hello'),

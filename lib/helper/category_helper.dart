@@ -30,10 +30,10 @@ class CategoryHelper {
     });
   }
 
-  // static Future<void> deleteCategory(String table, String title) async {
-  //   final db = await CategoryHelper.database();
-  //   await db.delete(table, where: 'title=?', whereArgs: [title]);
-  // }
+  static Future<void> deleteCategory(String table, String title) async {
+    final db = await CategoryHelper.database();
+    await db.delete(table, where: 'title=?', whereArgs: [title]);
+  }
 
   static Future<List<Map<String, dynamic>>> getData(String table) async {
     final db = await CategoryHelper.database();

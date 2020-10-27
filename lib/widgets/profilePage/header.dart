@@ -10,15 +10,9 @@ class ProfileHeader extends StatelessWidget {
     return Container(
       height: 250,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            const Color.fromRGBO(114, 30, 224, 1),
-            const Color.fromRGBO(160, 46, 185, 1),
-          ],
-          stops: [0.2, 0.9],
-        ),
+        image: DecorationImage(
+            image: AssetImage('assets/images/profilebg.jpg'),
+            fit: BoxFit.cover),
         boxShadow: [
           BoxShadow(
             offset: Offset(0, 1),
@@ -39,7 +33,7 @@ class ProfileHeader extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                 child: Text(
-                  'Profile Page',
+                  'Profile',
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'TimeBurner',
@@ -67,18 +61,22 @@ class ProfileHeader extends StatelessWidget {
                             Text(
                               'Hello',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white60,
-                                  fontFamily: 'TimeBurner',
-                                  fontWeight: FontWeight.bold),
+                                fontSize: 16,
+                                color: Colors.white70,
+                                fontFamily: 'TimeBurner',
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                              ),
                             ),
                             Text(
                               'Aman Srivastava',
                               style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontFamily: 'TimeBurner',
-                                  fontWeight: FontWeight.bold),
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontFamily: 'TimeBurner',
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                              ),
                             ),
                           ],
                         ),

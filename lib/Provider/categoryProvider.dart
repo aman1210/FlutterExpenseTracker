@@ -83,4 +83,14 @@ class CategoryProvider with ChangeNotifier {
       type: listName == 'Income' ? 0 : 1,
     );
   }
+
+  void deleteCategory(String title, String listName) {
+    if (listName == 'Income') {
+      incomeCategory.removeWhere((element) => element.categoryName == title);
+    } else {
+      expenseCategory.removeWhere((element) => element.categoryName == title);
+    }
+    notifyListeners();
+    CategoryHelper.deleteCategory('category_todo', title);
+  }
 }
