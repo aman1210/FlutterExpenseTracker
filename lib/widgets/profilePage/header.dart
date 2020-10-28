@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/screens/editProfile.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -8,6 +13,7 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ProfileProvider>(context);
     return Container(
       height: 250,
       decoration: BoxDecoration(
@@ -47,11 +53,24 @@ class ProfileHeader extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      child: Image.network(
-                          'https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png'),
-                      backgroundColor: Colors.grey[100],
-                      maxRadius: 35,
+                    Container(
+                      child: provider.path == ''
+                          ? Icon(
+                              FontAwesomeIcons.user,
+                              size: 35,
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(35),
+                              child: Image.file(
+                                File(provider.path),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(35)),
                     ),
                     Expanded(
                       child: Padding(
@@ -70,7 +89,9 @@ class ProfileHeader extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Aman Srivastava',
+                              provider.name == ''
+                                  ? 'Enter Your Name'
+                                  : '${provider.name}',
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,

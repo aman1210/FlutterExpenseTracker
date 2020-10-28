@@ -132,10 +132,6 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           Expanded(child: Container()),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Text('hello'),
-          )
         ],
       ),
 

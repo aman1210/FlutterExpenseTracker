@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -39,7 +41,22 @@ class _EditProfileState extends State<EditProfile> {
       return;
     }
     _form.currentState.save();
-    print('valid');
+    Provider.of<ProfileProvider>(context, listen: false)
+        .addProfile(_image.path, name, number, email, address);
+    Navigator.pop(context);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    var provider = Provider.of<ProfileProvider>(context, listen: false);
+    if (provider.name != '') {
+      name = provider.name;
+      _image = File(provider.path);
+      number = provider.number;
+      email = provider.email;
+      address = provider.address;
+    }
   }
 
   @override
@@ -120,6 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                   child: Column(
                     children: [
                       TextFormField(
+                        initialValue: name,
                         decoration: InputDecoration(
                           labelText: 'Name',
                           hintText: 'Enter Your Name',
@@ -138,6 +156,7 @@ class _EditProfileState extends State<EditProfile> {
                         },
                       ),
                       TextFormField(
+                        initialValue: email,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           hintText: 'Enter Your Email Address',
@@ -158,6 +177,7 @@ class _EditProfileState extends State<EditProfile> {
                         },
                       ),
                       TextFormField(
+                        initialValue: number,
                         decoration: InputDecoration(
                           labelText: 'Phone',
                           hintText: 'Enter Your Phone Number',
@@ -180,6 +200,7 @@ class _EditProfileState extends State<EditProfile> {
                         },
                       ),
                       TextFormField(
+                        initialValue: address,
                         decoration: InputDecoration(
                           labelText: 'Address',
                           hintText: 'Enter Your Address',
