@@ -22,7 +22,7 @@ class PaymentCard {
   }
 }
 
-enum CardType { Master, Visa, Rupay, Others, Invalid }
+enum CardType { Master, Visa, Rupay, VisaBasic, Invalid }
 
 class CardUtils {
   static String validateCVV(String value) {
@@ -134,14 +134,10 @@ class CardUtils {
         img = 'images/visa.jpeg';
         break;
       case CardType.Rupay:
-        img = 'images/rupaj.jpeg';
+        img = 'images/rupay.jpeg';
         break;
-      case CardType.Others:
-        icon = new Icon(
-          Icons.credit_card,
-          size: 40.0,
-          color: Colors.grey[600],
-        );
+      case CardType.VisaBasic:
+        img = 'images/visabasic.jpeg';
         break;
       case CardType.Invalid:
         icon = new Icon(
@@ -206,8 +202,8 @@ class CardUtils {
     } else if (input
         .startsWith(new RegExp(r'^6(?!011)(?:0[0-9]{14}|52[12][0-9]{12})'))) {
       cardType = CardType.Rupay;
-    } else if (input.length <= 8) {
-      cardType = CardType.Others;
+    } else if (input.startsWith(new RegExp(r'/^4\d{12}(?:\d{3})?$/'))) {
+      cardType = CardType.VisaBasic;
     } else {
       cardType = CardType.Invalid;
     }

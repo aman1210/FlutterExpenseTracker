@@ -67,12 +67,12 @@ class _AddCardState extends State<AddCard> {
   int validMonth = null;
   int validYear = null;
   CardNetworkType network;
-  CardCompany company;
+  CardCompany company = CardCompany.axisBank;
 
   @override
   void initState() {
     super.initState();
-    _paymentCard.type = CardType.Others;
+    // _paymentCard.type = CardType.Others;
     numberController.addListener(_getCardTypeFrmNumber);
   }
 
@@ -155,6 +155,10 @@ class _AddCardState extends State<AddCard> {
                           value: CardCompany.kotak,
                         ),
                         DropdownMenuItem(
+                          child: CardCompany.sbi.widget,
+                          value: CardCompany.sbi,
+                        ),
+                        DropdownMenuItem(
                           child: CardCompany.virgin.widget,
                           value: CardCompany.virgin,
                         ),
@@ -206,7 +210,12 @@ class _AddCardState extends State<AddCard> {
                 decoration: new InputDecoration(
                   border: const UnderlineInputBorder(),
                   filled: true,
-                  icon: Icon(Icons.credit_card),
+                  icon: network != null
+                      ? Container(
+                          child: network.widget,
+                          width: 30,
+                        )
+                      : Icon(Icons.credit_card),
                   hintText: 'What number is written on card?',
                   labelText: 'Number',
                 ),
@@ -285,7 +294,7 @@ class _AddCardState extends State<AddCard> {
       cardNetwork = CardNetworkType.visa;
     } else if (cardType == CardType.Rupay) {
       cardNetwork = CardNetworkType.rupay;
-    } else {
+    } else if (cardType == CardType.VisaBasic) {
       cardNetwork = CardNetworkType.visaBasic;
     }
     setState(() {
