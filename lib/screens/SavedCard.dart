@@ -48,7 +48,7 @@ class _SavedCardState extends State<SavedCard> {
           : Center(
               child: CreditCardSlider(
                 _creditCard,
-                repeatCards: RepeatCards.bothDirection,
+                // repeatCards: RepeatCards.down,
               ),
             ),
     );

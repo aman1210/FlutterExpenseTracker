@@ -107,74 +107,79 @@ class _AddCardState extends State<AddCard> {
           key: _formKey,
           child: ListView(
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
-                    child: Icon(
-                      FontAwesomeIcons.building,
-                      color: Colors.grey,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Icon(
+                        FontAwesomeIcons.building,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: DropdownButton<CardCompany>(
-                      itemHeight: 80,
-                      isExpanded: true,
-                      dropdownColor: Colors.grey,
-                      items: [
-                        DropdownMenuItem(
-                          child: CardCompany.axisBank.widget,
-                          value: CardCompany.axisBank,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.americanExpress.widget,
-                          value: CardCompany.americanExpress,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.citiBank.widget,
-                          value: CardCompany.citiBank,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.hdfc.widget,
-                          value: CardCompany.hdfc,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.hsbc.widget,
-                          value: CardCompany.hsbc,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.icici.widget,
-                          value: CardCompany.icici,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.indusland.widget,
-                          value: CardCompany.indusland,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.kotak.widget,
-                          value: CardCompany.kotak,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.sbi.widget,
-                          value: CardCompany.sbi,
-                        ),
-                        DropdownMenuItem(
-                          child: CardCompany.virgin.widget,
-                          value: CardCompany.virgin,
-                        ),
-                        DropdownMenuItem(
-                            child: CardCompany.yesBank.widget,
-                            value: CardCompany.yesBank),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          company = value;
-                        });
-                      },
-                      value: CardCompany.axisBank,
+                    Expanded(
+                      child: DropdownButtonFormField<CardCompany>(
+                        isExpanded: true,
+                        items: [
+                          DropdownMenuItem(
+                            child: CardCompany.axisBank.widget,
+                            value: CardCompany.axisBank,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.americanExpress.widget,
+                            value: CardCompany.americanExpress,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.bob.widget,
+                            value: CardCompany.bob,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.citiBank.widget,
+                            value: CardCompany.citiBank,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.hdfc.widget,
+                            value: CardCompany.hdfc,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.hsbc.widget,
+                            value: CardCompany.hsbc,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.icici.widget,
+                            value: CardCompany.icici,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.indusland.widget,
+                            value: CardCompany.indusland,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.kotak.widget,
+                            value: CardCompany.kotak,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.sbi.widget,
+                            value: CardCompany.sbi,
+                          ),
+                          DropdownMenuItem(
+                            child: CardCompany.virgin.widget,
+                            value: CardCompany.virgin,
+                          ),
+                          DropdownMenuItem(
+                              child: CardCompany.yesBank.widget,
+                              value: CardCompany.yesBank),
+                        ],
+                        onChanged: (value) {
+                          setState(() {
+                            company = value;
+                          });
+                        },
+                        value: CardCompany.axisBank,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               new TextFormField(
                 decoration: const InputDecoration(

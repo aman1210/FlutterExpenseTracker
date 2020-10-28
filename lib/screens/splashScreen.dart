@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:expenseTracker/Provider/cardProvider.dart';
 import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/screens/homepage.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     loadImages();
     super.initState();
     Provider.of<CategoryProvider>(context, listen: false).fetchAndSetCategory();
+    Provider.of<CardProvider>(context, listen: false).fetchAndSetCards();
   }
 
   @override
