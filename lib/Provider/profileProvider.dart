@@ -19,6 +19,7 @@ class ProfileProvider with ChangeNotifier {
     address = address2;
     number = number2;
     saveProfile();
+    notifyListeners();
   }
 
   ProfileProvider() {
