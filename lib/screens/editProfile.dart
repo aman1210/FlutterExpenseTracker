@@ -91,7 +91,10 @@ class _EditProfileState extends State<EditProfile> {
                         height: imageRadius,
                         width: imageRadius,
                         decoration: BoxDecoration(
-                          color: Colors.grey[300],
+                          color: Provider.of<ProfileProvider>(context).isDark ==
+                                  true
+                              ? Theme.of(context).primaryColor
+                              : Colors.grey[100],
                           borderRadius: BorderRadius.circular(imageRadius),
                         ),
                         child: _image != null
@@ -217,7 +220,11 @@ class _EditProfileState extends State<EditProfile> {
                           height: editIcon,
                           width: editIcon,
                           decoration: BoxDecoration(
-                            color: Colors.grey[400],
+                            color:
+                                Provider.of<ProfileProvider>(context).isDark ==
+                                        true
+                                    ? Color.fromRGBO(101, 111, 112, 1)
+                                    : Colors.grey[400],
                             borderRadius: BorderRadius.circular(editIcon),
                           ),
                           child: Icon(FontAwesomeIcons.camera),

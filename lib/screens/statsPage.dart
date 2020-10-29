@@ -95,7 +95,7 @@ class StatsPage extends StatelessWidget {
                               color: Colors.white,
                             ),
                             Text(
-                              'Hold to enable indicator',
+                              'Hold to enable and drag indicator',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.white),
                             ),

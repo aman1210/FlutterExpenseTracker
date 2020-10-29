@@ -58,6 +58,7 @@ class ProfileHeader extends StatelessWidget {
                           ? Icon(
                               FontAwesomeIcons.user,
                               size: 35,
+                              // color: Colors.black,
                             )
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(35),
@@ -69,7 +70,10 @@ class ProfileHeader extends StatelessWidget {
                       height: 70,
                       width: 70,
                       decoration: BoxDecoration(
-                          color: Colors.grey[100],
+                          color: Provider.of<ProfileProvider>(context).isDark ==
+                                  true
+                              ? Theme.of(context).primaryColor
+                              : Colors.grey[100],
                           borderRadius: BorderRadius.circular(35)),
                     ),
                     Expanded(
