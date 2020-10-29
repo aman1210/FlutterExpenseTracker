@@ -4,29 +4,20 @@ import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BrezzierChart extends StatefulWidget {
+class BrezzierChart extends StatelessWidget {
   final List<Transaction> list;
-  BrezzierChart(this.list);
 
-  @override
-  _BrezzierChartState createState() => _BrezzierChartState();
-}
+  BrezzierChart(
+    this.list,
+  );
 
-class _BrezzierChartState extends State<BrezzierChart> {
   List<DataPoint<DateTime>> _expensepoints = [];
   List<DataPoint<DateTime>> _incomepoints = [];
-  var visible = true;
-
-  setFalse() {
-    setState(() {
-      visible = false;
-    });
-  }
 
   generate() {
     _expensepoints = [];
     _incomepoints = [];
-    widget.list.forEach((e) {
+    list.forEach((e) {
       if (e.transactionType == TransactionType.Expense) {
         _expensepoints.add(
             DataPoint<DateTime>(value: e.amount.toDouble(), xAxis: e.date));
@@ -43,17 +34,18 @@ class _BrezzierChartState extends State<BrezzierChart> {
     final fromDate = DateTime(DateTime.now().year - 1);
     generate();
     return Container(
+      constraints: BoxConstraints(maxHeight: 300),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
               color: Colors.black38,
-              offset: Offset(0, 4),
-              blurRadius: 8,
-              spreadRadius: 4)
+              offset: Offset(0, 10),
+              blurRadius: 4,
+              spreadRadius: 0)
         ],
         color: Colors.deepPurple,
       ),
-      // height: 400,
+      height: 300,
       width: MediaQuery.of(context).size.width,
       child: BezierChart(
         fromDate: fromDate,
@@ -83,6 +75,7 @@ class _BrezzierChartState extends State<BrezzierChart> {
           verticalIndicatorColor: Colors.black26,
           showVerticalIndicator: true,
           verticalIndicatorFixedPosition: false,
+          displayDataPointWhenNoValue: true,
           backgroundGradient:
               Provider.of<ProfileProvider>(context).isDark == true
                   ? LinearGradient(
@@ -98,15 +91,14 @@ class _BrezzierChartState extends State<BrezzierChart> {
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        Colors.deepPurple,
                         Colors.blue[800],
+                        Colors.deepPurple,
                       ],
                       stops: [0.1, 0.9],
                     ),
-          displayDataPointWhenNoValue: true,
           pinchZoom: true,
           bubbleIndicatorColor: Colors.white,
-          backgroundColor: Theme.of(context).primaryColor,
+          // backgroundColor: Colors.transparent,
           footerHeight: 40.0,
         ),
       ),
