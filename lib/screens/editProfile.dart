@@ -25,7 +25,7 @@ class _EditProfileState extends State<EditProfile> {
   var address = '';
 
   Future pickImage(ImageSource source) async {
-    final pickedImage = await imagePicker.getImage(source: ImageSource.camera);
+    final pickedImage = await imagePicker.getImage(source: source);
     setState(() {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
@@ -144,6 +144,7 @@ class _EditProfileState extends State<EditProfile> {
                                           child: InkWell(
                                             onTap: () {
                                               pickImage(ImageSource.camera);
+                                              Navigator.pop(context);
                                             },
                                             child: Container(
                                               height: 60,
@@ -179,6 +180,7 @@ class _EditProfileState extends State<EditProfile> {
                                           child: InkWell(
                                             onTap: () {
                                               pickImage(ImageSource.gallery);
+                                              Navigator.pop(context);
                                             },
                                             child: Container(
                                               height: 60,

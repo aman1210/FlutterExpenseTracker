@@ -156,9 +156,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+
           if (transaction.length == 0)
             Text(
-              'No Transactions Yet ',
+              'No Transactions',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
