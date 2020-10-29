@@ -4,17 +4,29 @@ import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BrezzierChart extends StatelessWidget {
+class BrezzierChart extends StatefulWidget {
   final List<Transaction> list;
   BrezzierChart(this.list);
 
+  @override
+  _BrezzierChartState createState() => _BrezzierChartState();
+}
+
+class _BrezzierChartState extends State<BrezzierChart> {
   List<DataPoint<DateTime>> _expensepoints = [];
   List<DataPoint<DateTime>> _incomepoints = [];
+  var visible = true;
+
+  setFalse() {
+    setState(() {
+      visible = false;
+    });
+  }
 
   generate() {
     _expensepoints = [];
     _incomepoints = [];
-    list.forEach((e) {
+    widget.list.forEach((e) {
       if (e.transactionType == TransactionType.Expense) {
         _expensepoints.add(
             DataPoint<DateTime>(value: e.amount.toDouble(), xAxis: e.date));

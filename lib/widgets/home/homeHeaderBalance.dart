@@ -1,10 +1,13 @@
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HomeHeaderBalance extends StatelessWidget {
+  final int month;
   const HomeHeaderBalance({
     Key key,
+    this.month,
   }) : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class HomeHeaderBalance extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Total Balance',
+            'Balance ${DateTime.now().month == month ? "this month" : "in " + DateFormat.MMMM().format(DateTime(DateTime.now().year, month))}',
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,

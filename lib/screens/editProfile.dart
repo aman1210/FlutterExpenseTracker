@@ -24,7 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   var email = '';
   var address = '';
 
-  Future pickImage() async {
+  Future pickImage(ImageSource source) async {
     final pickedImage = await imagePicker.getImage(source: ImageSource.camera);
     setState(() {
       if (pickedImage != null) {
@@ -114,7 +114,104 @@ class _EditProfileState extends State<EditProfile> {
                       left: width / 2 + editIcon / 2 + 10,
                       child: InkWell(
                         onTap: () {
-                          pickImage();
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return Container(
+                                height: 105,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Profile Photo',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              pickImage(ImageSource.camera);
+                                            },
+                                            child: Container(
+                                              height: 60,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.camera,
+                                                    color: Colors.white,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'Camera',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontFamily: "TimeBurner",
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              pickImage(ImageSource.gallery);
+                                            },
+                                            child: Container(
+                                              height: 60,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(FontAwesomeIcons.image,
+                                                      color: Colors.black),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'Gallery',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black,
+                                                      fontFamily: "TimeBurner",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          );
                         },
                         child: Container(
                           height: editIcon,

@@ -37,7 +37,7 @@ class _TransactionFormState extends State<TransactionForm> {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(top: 20),
-      constraints: BoxConstraints(minHeight: 650),
+      constraints: BoxConstraints(minHeight: 800),
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(

@@ -65,20 +65,6 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-          // Container(
-          //   margin: const EdgeInsets.symmetric(horizontal: 20),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Text('Daily Remainder to add transactions'),
-          //       Switch(
-          //         value: false,
-          //         onChanged: (value) {},
-          //       )
-          //     ],
-          //   ),
-          // ),
-
           Container(
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -134,32 +120,6 @@ class ProfilePage extends StatelessWidget {
           Expanded(child: Container()),
         ],
       ),
-
-      //Displaying Profile Photo (after update)
-
-      // Positioned(
-      //   child: Container(
-      //     height: imageRadius,
-      //     width: imageRadius,
-      //     decoration: BoxDecoration(
-      //       color: Colors.grey[200],
-      //       borderRadius: BorderRadius.circular(100),
-      //     ),
-      //     child: Container(
-      //       margin: const EdgeInsets.all(4),
-      //       decoration: BoxDecoration(
-      //         // color: Colors.red,
-      //         borderRadius: BorderRadius.circular(100),
-      //       ),
-      //       child: Icon(
-      //         Icons.person,
-      //         size: 50,
-      //       ),
-      //     ),
-      //   ),
-      //   top: top - imageRadius / 2,
-      //   left: size.width / 2 - imageRadius / 2,
-      // ),
     );
   }
 }

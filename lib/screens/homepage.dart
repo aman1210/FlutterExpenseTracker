@@ -25,10 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _list = [
-      FutureBuilder(
-          future: Provider.of<TransactionProvider>(context, listen: false)
-              .fetchAndSetTransaction(),
-          builder: (context, snapshot) => Home(changeVisibility, _isVisible)),
+      Home(changeVisibility, _isVisible),
       StatsPage(),
       ProfilePage(),
     ];

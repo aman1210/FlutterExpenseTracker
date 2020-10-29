@@ -17,15 +17,17 @@ class TransactionProvider with ChangeNotifier {
   List<Transaction> transaction = [];
   List<Transaction> expense = [];
 
-  totalBalance() {
+  totalBalance(int month) {
     balance = 0;
     spent = 0;
     earned = 0;
     transaction.forEach((element) {
-      if (element.transactionType == TransactionType.Income) {
-        earned += element.amount;
-      } else {
-        spent += element.amount;
+      if (element.date.month == month) {
+        if (element.transactionType == TransactionType.Income) {
+          earned += element.amount;
+        } else {
+          spent += element.amount;
+        }
       }
     });
     balance = earned - spent;
@@ -81,7 +83,8 @@ class TransactionProvider with ChangeNotifier {
       return t;
     }).toList();
     transaction = _t.reversed.toList();
-    totalBalance();
+    totalBalance(DateTime.now().month);
+    notifyListeners();
   }
 
   String addTransaction(TransactionType _t) {
@@ -105,12 +108,7 @@ class TransactionProvider with ChangeNotifier {
           title: title,
           transactionType: _t),
     );
-    if (_t == TransactionType.Income) {
-      earned += amount;
-    } else {
-      spent += amount;
-    }
-    balance = earned - spent;
+    totalBalance(DateTime.now().month);
     notifyListeners();
     TransactionHelper.insert(
       title: title,
@@ -129,8 +127,7 @@ class TransactionProvider with ChangeNotifier {
   Future<void> delete(DateTime date) async {
     transaction.removeWhere((element) => element.date == date);
     TransactionHelper.delete(date.toIso8601String());
-
-    totalBalance();
+    totalBalance(date.month);
   }
 
   List<Transaction> getTransactionInRange(DateTime d) {

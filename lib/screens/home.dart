@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:expenseTracker/widgets/home/dragContainer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -22,9 +24,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   ScrollController _controller;
-  @override
-  void initState() {
-    super.initState();
+  List<Transaction> alltransaction = [];
+  List<Transaction> transaction = [];
+  int month = DateTime.now().month;
+
+  initApp() {
+    alltransaction =
+        Provider.of<TransactionProvider>(context, listen: false).transaction;
+    transaction = alltransaction
+        .where((element) => element.date.month == DateTime.now().month)
+        .toList();
     _controller = ScrollController();
     _controller.addListener(() {
       if (_controller.position.userScrollDirection == ScrollDirection.reverse) {
@@ -41,14 +50,28 @@ class _HomeState extends State<Home> {
     });
   }
 
+  changeDate(int i) {
+    setState(() {
+      month += i;
+
+      transaction = alltransaction
+          .where((element) => element.date.month == month)
+          .toList();
+    });
+    Provider.of<TransactionProvider>(context, listen: false)
+        .totalBalance(month);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initApp();
+  }
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var size = mediaQuery.size;
-
-    List<Transaction> transaction =
-        Provider.of<TransactionProvider>(context).transaction;
-    // Provider.of<TransactionProvider>(context).totalBalance;
     var header = AnimatedContainer(
       duration: Duration(milliseconds: 300),
       height: size.height * 0.35,
@@ -56,10 +79,11 @@ class _HomeState extends State<Home> {
         overflow: Overflow.visible,
         children: [
           HomeHeaderBackground(
-            // visible: widget.visible,
             height: size.height * 0.35,
           ),
-          HomeHeaderBalance(),
+          HomeHeaderBalance(
+            month: month,
+          ),
           Positioned(
             bottom: -30,
             child: Container(
@@ -93,6 +117,34 @@ class _HomeState extends State<Home> {
             height: 10,
           ),
           DragContainer(size),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: Icon(FontAwesomeIcons.arrowCircleLeft),
+                onPressed: () {
+                  changeDate(-1);
+                },
+              ),
+              Expanded(
+                child: Text(
+                  'Transactions ${DateTime.now().month == month ? "this month" : "in " + DateFormat.MMMM().format(DateTime(DateTime.now().year, month))}',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'TimeBurner',
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              IconButton(
+                icon: Icon(FontAwesomeIcons.arrowCircleRight),
+                onPressed: () {
+                  changeDate(1);
+                },
+              ),
+            ],
+          ),
           if (transaction.length == 0)
             Expanded(
               child: Padding(
@@ -100,23 +152,23 @@ class _HomeState extends State<Home> {
                 child: Image.asset(
                   'assets/images/search.png',
                   // fit: BoxFit.contain,
+                  height: 200,
                 ),
               ),
             ),
           if (transaction.length == 0)
             Text(
-              'No Transactions Yet!!!',
+              'No Transactions Yet ',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
-            ),
-          if (transaction.length > 0)
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 4, left: 20),
-              child: Text(
-                'Transactions',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'TimeBurner',
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1,
               ),
             ),
+          // if (transaction.length > 0)
+
           if (transaction.length > 0)
             Expanded(
               child: SingleChildScrollView(
