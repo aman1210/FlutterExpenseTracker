@@ -1,8 +1,20 @@
+import 'package:expenseTracker/Provider/ad_service.dart';
 import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ManageCategories extends StatelessWidget {
+class ManageCategories extends StatefulWidget {
+  @override
+  _ManageCategoriesState createState() => _ManageCategoriesState();
+}
+
+class _ManageCategoriesState extends State<ManageCategories> {
+  @override
+  void initState() {
+    super.initState();
+    AdMobService.hideBannerAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<CategoryProvider>(context);

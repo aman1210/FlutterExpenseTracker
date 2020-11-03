@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:expenseTracker/Provider/ad_service.dart';
 import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -49,6 +50,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void initState() {
     super.initState();
+    AdMobService.hideBannerAd();
     var provider = Provider.of<ProfileProvider>(context, listen: false);
     if (provider.name != '') {
       name = provider.name;

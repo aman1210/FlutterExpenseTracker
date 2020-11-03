@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:expenseTracker/Provider/ad_service.dart';
 import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/screens/editProfile.dart';
 import 'package:flutter/material.dart';
@@ -118,11 +119,13 @@ class ProfileHeader extends StatelessWidget {
                             size: 20,
                           ),
                           onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => EditProfile(),
-                              ),
-                            );
+                            Navigator.of(context)
+                                .push(
+                                  MaterialPageRoute(
+                                    builder: (context) => EditProfile(),
+                                  ),
+                                )
+                                .then((value) => AdMobService.showBannerAd());
                           },
                         ),
                       ),

@@ -4,6 +4,7 @@ import 'package:credit_card_slider/card_network_type.dart';
 import 'package:credit_card_slider/credit_card_slider.dart';
 import 'package:credit_card_slider/credit_card_widget.dart';
 import 'package:credit_card_slider/validity.dart';
+import 'package:expenseTracker/Provider/ad_service.dart';
 import 'package:expenseTracker/Provider/cardProvider.dart';
 import 'package:expenseTracker/screens/newCard.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,12 @@ class SavedCard extends StatefulWidget {
 
 class _SavedCardState extends State<SavedCard> {
   List<CreditCard> _creditCard = [];
+
+  @override
+  void initState() {
+    super.initState();
+    AdMobService.hideBannerAd();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,32 @@
+import 'package:expenseTracker/Provider/ad_service.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:expenseTracker/screens/categories.dart';
 import 'package:expenseTracker/widgets/profilePage/darkModeSwitch.dart';
-import 'package:flutter/material.dart';
 import 'package:expenseTracker/screens/SavedCard.dart';
 import 'package:expenseTracker/widgets/profilePage/header.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    FirebaseAdMob.instance.initialize(
+      appId: BannerAd.testAdUnitId,
+    );
+    AdMobService.showBannerAd();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +80,7 @@ class ProfilePage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ManageCategories(),
                       ),
-                    );
+                    ).then((value) => AdMobService.showBannerAd());
                   },
                 )),
               ],
@@ -111,7 +132,7 @@ class ProfilePage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => SavedCard(),
                       ),
-                    );
+                    ).then((value) => AdMobService.showBannerAd());
                   },
                 )),
               ],

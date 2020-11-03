@@ -29,11 +29,10 @@ class _HomeState extends State<Home> {
   int month = DateTime.now().month;
 
   initApp() {
-    alltransaction =
-        Provider.of<TransactionProvider>(context, listen: false).transaction;
-    transaction = alltransaction
-        .where((element) => element.date.month == DateTime.now().month)
-        .toList();
+    alltransaction = Provider.of<TransactionProvider>(context).transaction;
+    print(alltransaction.length);
+    transaction =
+        alltransaction.where((element) => element.date.month == month).toList();
     _controller = ScrollController();
     _controller.addListener(() {
       if (_controller.position.userScrollDirection == ScrollDirection.reverse) {
@@ -53,10 +52,6 @@ class _HomeState extends State<Home> {
   changeDate(int i) {
     setState(() {
       month += i;
-
-      transaction = alltransaction
-          .where((element) => element.date.month == month)
-          .toList();
     });
     Provider.of<TransactionProvider>(context, listen: false)
         .totalBalance(month);
@@ -65,11 +60,20 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    initApp();
+    // initApp();
+  }
+
+  @override
+  void didUpdateWidget(covariant Home oldWidget) {
+    // TODO: implement didUpdateWidget
+    // print('hello');
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
+    print(month);
+    initApp();
     var mediaQuery = MediaQuery.of(context);
     var size = mediaQuery.size;
     var header = AnimatedContainer(

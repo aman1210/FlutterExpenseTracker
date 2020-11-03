@@ -97,7 +97,8 @@ class TransactionProvider with ChangeNotifier {
     } else if (category == null) {
       return 'Please select a category';
     }
-    transaction.add(
+    transaction.insert(
+      0,
       new Transaction(
           amount: amount,
           category: category,
