@@ -3,6 +3,10 @@
 A new Flutter project.
 
 
+## Screenshots
+<img height="480px" src="Screenshots/1.jpg"><img height="480px" src="Screenshots/2.jpg"><img height="480px" src="Screenshots/3.jpg"><img height="480px" src="Screenshots/4.jpg">
+
+
 <a href='https://play.google.com/store/apps/details?id=com.souleater.expenseTracker'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=90px/></a>
 
 
