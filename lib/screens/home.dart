@@ -30,7 +30,6 @@ class _HomeState extends State<Home> {
 
   initApp() {
     alltransaction = Provider.of<TransactionProvider>(context).transaction;
-    print(alltransaction.length);
     transaction =
         alltransaction.where((element) => element.date.month == month).toList();
     _controller = ScrollController();
@@ -72,7 +71,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print(month);
     initApp();
     var mediaQuery = MediaQuery.of(context);
     var size = mediaQuery.size;
