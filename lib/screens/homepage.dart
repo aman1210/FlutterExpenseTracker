@@ -14,18 +14,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _currentIndex = 0;
-  var _isVisible = true;
-
-  changeVisibility(bool val) {
-    setState(() {
-      _isVisible = val;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> _list = [
-      Home(changeVisibility, _isVisible),
+      Home(),
       StatsPage(),
       ProfilePage(),
     ];
@@ -33,17 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: true,
       body: _list[_currentIndex],
-      bottomNavigationBar: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        height: _isVisible == true ? 60 : 0,
-        child: _isVisible == true
-            ? FluidNavBar(onChange: _handleNavigationChange)
-            : Container(
-                height: 100,
-                color: Colors.white,
-                width: double.infinity,
-              ),
-      ),
+      bottomNavigationBar: Container(
+          height: 60, child: FluidNavBar(onChange: _handleNavigationChange)),
     );
   }
 

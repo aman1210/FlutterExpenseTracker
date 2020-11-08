@@ -126,9 +126,16 @@ class _DragContainerState extends State<DragContainer>
     );
 
     return Container(
+      height: 60,
       margin: const EdgeInsets.only(
-        top: 30,
-      ),
+          // top: 30,
+          ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          color: Colors.red),
       child: Stack(
         alignment: Alignment.center,
         children: [

@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             brightness: value.isDark ? Brightness.dark : Brightness.light,
-            primarySwatch: Colors.deepPurple,
+            primarySwatch: Colors.green,
             accentColor: Colors.amber,
             fontFamily: 'Poppins',
           ),
