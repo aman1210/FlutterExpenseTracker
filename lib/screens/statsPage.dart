@@ -25,6 +25,7 @@ class StatsPage extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
+                color: Color(0xffa8e063),
                 gradient: Provider.of<ProfileProvider>(context).isDark == true
                     ? LinearGradient(
                         begin: Alignment.topRight,
@@ -35,15 +36,7 @@ class StatsPage extends StatelessWidget {
                         ],
                         stops: [0.1, 0.9],
                       )
-                    : LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Colors.blue[800],
-                          Colors.deepPurple,
-                        ],
-                        stops: [0.1, 0.9],
-                      ),
+                    : null,
               ),
               height: 380,
               child: Stack(

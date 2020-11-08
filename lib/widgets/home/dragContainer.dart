@@ -131,11 +131,11 @@ class _DragContainerState extends State<DragContainer>
           // top: 30,
           ),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          color: Colors.red),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
       child: Stack(
         alignment: Alignment.center,
         children: [

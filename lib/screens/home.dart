@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
           children: [
             Container(
               height: size.height * 0.5,
-              color: Colors.blue,
+              color: Colors.lightGreen,
             ),
             Positioned(
               bottom: 0,
@@ -80,7 +80,15 @@ class _HomeState extends State<Home> {
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   ),
-                  color: Colors.amber,
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black38,
+                      blurRadius: 20,
+                      spreadRadius: 0,
+                      offset: Offset(0, -5),
+                    ),
+                  ],
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -123,6 +131,7 @@ class _HomeState extends State<Home> {
                         alignment: Alignment.center,
                       ),
                     ),
+                    DragContainer(size),
                     Expanded(
                       child: Container(
                         width: double.infinity,
@@ -201,30 +210,6 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                // child: Column(
-                //   crossAxisAlignment: CrossAxisAlignment.center,
-                //   children: [
-                //     GestureDetector(
-                //       onVerticalDragUpdate: (details) {
-                //         setState(() {
-                //           height += details.delta.dy;
-                //         });
-                //       },
-                //       onVerticalDragStart: (details) {
-                //         height = size.height - (size.height * 0.40);
-                //       },
-                //       child: Container(
-                //         height: 2,
-                //         width: 40,
-                //         color: Colors.black,
-                //         margin: const EdgeInsets.only(top: 20, bottom: 20),
-                //       ),
-                //     ),
-                //     Text('hello'),
-                //     Text('hello'),
-                //     Text('hello'),
-                //   ],
-                // ),
               ),
             ),
           ],

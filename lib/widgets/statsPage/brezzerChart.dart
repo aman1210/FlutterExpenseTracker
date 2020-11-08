@@ -37,11 +37,12 @@ class BrezzierChart extends StatelessWidget {
       constraints: BoxConstraints(maxHeight: 300),
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(
-              color: Colors.black38,
-              offset: Offset(0, 10),
-              blurRadius: 4,
-              spreadRadius: 0)
+          // BoxShadow(
+          //   color: Colors.black38,
+          //   offset: Offset(0, 15),
+          //   blurRadius: 4,
+          //   spreadRadius: 0,
+          // )
         ],
         color: Colors.deepPurple,
       ),
@@ -59,7 +60,7 @@ class BrezzierChart extends StatelessWidget {
               return 0;
             },
             data: _incomepoints,
-            lineColor: Colors.green[200],
+            lineColor: Colors.green[900],
           ),
           BezierLine(
             label: "Expense",
@@ -88,13 +89,13 @@ class BrezzierChart extends StatelessWidget {
                       stops: [0.1, 0.9],
                     )
                   : LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
                       colors: [
-                        Colors.blue[800],
-                        Colors.deepPurple,
+                        Color(0xffa8e063),
+                        Color(0xff56ab2f),
                       ],
-                      stops: [0.1, 0.9],
+                      stops: [0.3, 0.9],
                     ),
           pinchZoom: true,
           bubbleIndicatorColor: Colors.white,
