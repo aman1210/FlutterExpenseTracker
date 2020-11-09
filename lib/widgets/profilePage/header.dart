@@ -19,8 +19,11 @@ class ProfileHeader extends StatelessWidget {
       height: 250,
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/profilebg.jpg'),
-            fit: BoxFit.cover),
+          image: AssetImage(
+            'assets/images/bg6.jpg',
+          ),
+          fit: BoxFit.cover,
+        ),
         boxShadow: [
           BoxShadow(
             offset: Offset(0, 1),

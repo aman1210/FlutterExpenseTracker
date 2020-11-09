@@ -103,7 +103,7 @@ class _DragContainerState extends State<DragContainer>
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.only(left: 5),
           decoration: BoxDecoration(
-            color: Colors.red[400],
+            color: Colors.blue,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(100),
               topLeft: Radius.circular(100),
@@ -115,7 +115,7 @@ class _DragContainerState extends State<DragContainer>
           width: containerWidth,
           margin: const EdgeInsets.only(right: 5),
           decoration: BoxDecoration(
-            color: Colors.green,
+            color: Colors.lightGreen,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(100),
               bottomRight: Radius.circular(100),

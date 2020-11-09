@@ -56,6 +56,38 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var header = Container(
+      height: size.height * 0.5,
+      child: Stack(
+        overflow: Overflow.visible,
+        children: [
+          HomeHeaderBackground(
+            height: size.height * 0.5,
+          ),
+          HomeHeaderBalance(),
+          Positioned(
+            bottom: -30,
+            child: Container(
+              width: size.width,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  HomeHeaderCard(
+                    name: 'Spent',
+                    angle: math.pi * 3 / 4,
+                  ),
+                  HomeHeaderCard(
+                    name: 'Earned',
+                    angle: -math.pi * 1 / 4,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
     return Scaffold(
       body: Container(
         height: size.height,
@@ -63,16 +95,54 @@ class _HomeState extends State<Home> {
           alignment: Alignment.topCenter,
           children: [
             Container(
-              height: size.height * 0.5,
-              color: Colors.lightGreen,
+              height: size.height * 0.4,
+              decoration: BoxDecoration(
+                color: Colors.lightGreen,
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/bg6.jpg',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                // alignment: Alignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  HomeHeaderBalance(
+                    month: DateTime.now().month,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: size.width,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        HomeHeaderCard(
+                          name: 'Spent',
+                          angle: math.pi * 3 / 4,
+                        ),
+                        HomeHeaderCard(
+                          name: 'Earned',
+                          angle: -math.pi * 1 / 4,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
+            // header,
             Positioned(
               bottom: 0,
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 200),
                 constraints: BoxConstraints(
                     maxHeight: size.height - 60 - kBottomNavigationBarHeight,
-                    minHeight: size.height - (size.height * 0.40)),
+                    minHeight: size.height - (size.height * 0.42)),
                 height: height,
                 width: size.width,
                 decoration: BoxDecoration(
@@ -80,7 +150,9 @@ class _HomeState extends State<Home> {
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   ),
-                  color: Colors.white,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).primaryColor
+                      : Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black38,
@@ -103,7 +175,7 @@ class _HomeState extends State<Home> {
                       onPanEnd: (details) {
                         if (expanded) {
                           setState(() {
-                            height = size.height - (size.height * 0.40);
+                            height = size.height - (size.height * 0.42);
                             expanded = false;
                           });
                         } else {

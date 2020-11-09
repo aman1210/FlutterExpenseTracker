@@ -43,13 +43,10 @@ class _DarkModeSwitchState extends State<DarkModeSwitch> {
             ),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    const Color.fromRGBO(114, 30, 224, 1),
-                    const Color.fromRGBO(160, 46, 185, 1),
-                  ],
-                  stops: [0.5, 0.9],
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  colors: [Colors.lightGreen, Colors.green],
+                  // stops: [0.4, 0.9],
                 ),
                 borderRadius: BorderRadius.circular(5)),
           ),
