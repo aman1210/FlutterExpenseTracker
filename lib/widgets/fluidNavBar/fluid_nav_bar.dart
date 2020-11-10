@@ -150,14 +150,14 @@ class _FluidNavBarState extends State<FluidNavBar>
     _yController.value = 1.0;
     _xController.animateTo(
         _indexToPosition(index) / MediaQuery.of(context).size.width,
-        duration: Duration(milliseconds: 300));
+        duration: Duration(milliseconds: 200));
     Future.delayed(
-      Duration(milliseconds: 500),
+      Duration(milliseconds: 300),
       () {
         _yController.animateTo(1.0, duration: Duration(milliseconds: 1200));
       },
     );
-    _yController.animateTo(0.0, duration: Duration(milliseconds: 300));
+    _yController.animateTo(0.0, duration: Duration(milliseconds: 200));
 
     if (widget.onChange != null) {
       widget.onChange(index);

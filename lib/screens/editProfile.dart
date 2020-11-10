@@ -82,7 +82,7 @@ class _EditProfileState extends State<EditProfile> {
                     Container(
                       height: containerH,
                       child: Image.asset(
-                        'assets/images/bg.jpg',
+                        'assets/images/bg9.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),
