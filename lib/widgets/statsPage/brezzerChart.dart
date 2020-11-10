@@ -44,7 +44,7 @@ class BrezzierChart extends StatelessWidget {
           //   spreadRadius: 0,
           // )
         ],
-        color: Colors.deepPurple,
+        // color: Colors.deepPurple,
       ),
       height: 300,
       width: MediaQuery.of(context).size.width,
@@ -60,7 +60,7 @@ class BrezzierChart extends StatelessWidget {
               return 0;
             },
             data: _incomepoints,
-            lineColor: Colors.green[900],
+            lineColor: Theme.of(context).accentColor,
           ),
           BezierLine(
             label: "Expense",
@@ -68,7 +68,7 @@ class BrezzierChart extends StatelessWidget {
               return 0;
             },
             data: _expensepoints,
-            lineColor: Colors.blue[300],
+            lineColor: Theme.of(context).primaryColor,
           ),
         ],
         config: BezierChartConfig(
@@ -77,29 +77,31 @@ class BrezzierChart extends StatelessWidget {
           showVerticalIndicator: true,
           verticalIndicatorFixedPosition: false,
           displayDataPointWhenNoValue: true,
-          backgroundGradient:
-              Provider.of<ProfileProvider>(context).isDark == true
-                  ? LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Colors.grey[800],
-                        Colors.black,
-                      ],
-                      stops: [0.1, 0.9],
-                    )
-                  : LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xffa8e063),
-                        Color(0xff56ab2f),
-                      ],
-                      stops: [0.3, 0.9],
-                    ),
+          // backgroundGradient:
+          //     Provider.of<ProfileProvider>(context).isDark == true
+          //         ? LinearGradient(
+          //             begin: Alignment.topRight,
+          //             end: Alignment.bottomLeft,
+          //             colors: [
+          //               Colors.grey[800],
+          //               Colors.black,
+          //             ],
+          //             stops: [0.1, 0.9],
+          //           )
+          //         : LinearGradient(
+          //             begin: Alignment.topCenter,
+          //             end: Alignment.bottomCenter,
+          //             colors: [
+          //               Color(0xffa8e063),
+          //               Color(0xff56ab2f),
+          //             ],
+          //             stops: [0.3, 0.9],
+          //           ),
           pinchZoom: true,
-          bubbleIndicatorColor: Colors.white,
-          // backgroundColor: Colors.transparent,
+          // bubbleIndicatorColor: Colors.white,
+          // backgroundColor: Theme.of(context).brightness == Brightness.dark
+          //     ? Theme.of(context).primaryColor
+          //     : Colors.white,
           footerHeight: 40.0,
         ),
       ),

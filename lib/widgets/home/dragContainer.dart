@@ -115,7 +115,7 @@ class _DragContainerState extends State<DragContainer>
           width: containerWidth,
           margin: const EdgeInsets.only(right: 5),
           decoration: BoxDecoration(
-            color: Colors.lightGreen,
+            color: Colors.green,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(100),
               bottomRight: Radius.circular(100),

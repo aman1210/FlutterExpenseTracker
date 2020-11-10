@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             brightness: value.isDark ? Brightness.dark : Brightness.light,
-            primarySwatch: Colors.green,
-            accentColor: Colors.amber,
+            primarySwatch: Colors.indigo,
+            accentColor: Colors.lime,
             fontFamily: 'Poppins',
           ),
           home: SplashScreen(),

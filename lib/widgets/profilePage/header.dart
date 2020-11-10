@@ -20,7 +20,7 @@ class ProfileHeader extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            'assets/images/bg6.jpg',
+            'assets/images/bg9.jpg',
           ),
           fit: BoxFit.cover,
         ),

@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
                 color: Colors.lightGreen,
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/images/bg6.jpg',
+                    'assets/images/bg9.jpg',
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
                 duration: Duration(milliseconds: 200),
                 constraints: BoxConstraints(
                     maxHeight: size.height - 60 - kBottomNavigationBarHeight,
-                    minHeight: size.height - (size.height * 0.42)),
+                    minHeight: size.height - (size.height * 0.4)),
                 height: height,
                 width: size.width,
                 decoration: BoxDecoration(
@@ -175,7 +175,7 @@ class _HomeState extends State<Home> {
                       onPanEnd: (details) {
                         if (expanded) {
                           setState(() {
-                            height = size.height - (size.height * 0.42);
+                            height = size.height - (size.height * 0.4);
                             expanded = false;
                           });
                         } else {

@@ -1,4 +1,5 @@
 import 'package:expenseTracker/Provider/profileProvider.dart';
+import 'package:expenseTracker/widgets/statsPage/sync_line_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,80 +26,31 @@ class StatsPage extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Color(0xffa8e063),
-                gradient: Provider.of<ProfileProvider>(context).isDark == true
-                    ? LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Colors.grey[800],
-                          Colors.black,
-                        ],
-                        stops: [0.1, 0.9],
-                      )
-                    : null,
-              ),
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //       blurRadius: 10,
+                  //       offset: Offset(0, 5),
+                  //       color: Colors.black38)
+                  // ],
+                  // color: Color(0xffa8e063),
+                  // gradient: Provider.of<ProfileProvider>(context).isDark == true
+                  //     ? LinearGradient(
+                  //         begin: Alignment.topRight,
+                  //         end: Alignment.bottomLeft,
+                  //         colors: [
+                  //           Colors.grey[800],
+                  //           Colors.black,
+                  //         ],
+                  //         stops: [0.1, 0.9],
+                  //       )
+                  //     : null,
+                  ),
               height: 380,
-              child: Stack(
-                // fit: StackFit.expand,
-                alignment: Alignment.bottomCenter,
-                children: [
-                  BrezzierChart(
-                    _list,
-                  ),
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.touch_app,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'Tap to disable indicator',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.zoom_in,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'Pinch to zoom-in and zoom-out(when indicator is disabled)',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.touch_app,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'Hold to enable and drag indicator',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+
+              // BrezzierChart(
+              //   _list,
+              // ),
+              child: SyncLineChart(_list),
             ),
             SizedBox(
               height: 10,
