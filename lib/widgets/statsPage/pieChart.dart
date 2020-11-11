@@ -17,6 +17,14 @@ class PieChart extends StatefulWidget {
 class _PieChartState extends State<PieChart> {
   List<CategoryModel> categories = [];
   @override
+  void didUpdateWidget(covariant PieChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    categories = widget.type == TransactionType.Expense
+        ? Provider.of<CategoryProvider>(context, listen: false).expenseCategory
+        : Provider.of<CategoryProvider>(context, listen: false).incomeCategory;
+  }
+
+  @override
   void initState() {
     super.initState();
     categories = widget.type == TransactionType.Expense
@@ -62,9 +70,7 @@ class _PieChartState extends State<PieChart> {
     );
     return <PieSeries<ChartSampleData, String>>[
       PieSeries<ChartSampleData, String>(
-          explode: true,
-          explodeIndex: 0,
-          explodeOffset: '10%',
+          animationDuration: 1000,
           dataSource: pieData,
           xValueMapper: (ChartSampleData data, _) => data.x,
           yValueMapper: (ChartSampleData data, _) => data.y,

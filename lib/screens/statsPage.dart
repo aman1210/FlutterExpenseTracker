@@ -64,7 +64,7 @@ class _StatsPageState extends State<StatsPage> {
 
   Container buildPieHeader(String title) {
     return Container(
-      margin: const EdgeInsets.only(top: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(width: 1, color: Colors.black38),
@@ -83,7 +83,7 @@ class _StatsPageState extends State<StatsPage> {
             child: Text(
               '${DateFormat.yMMMM().format(date)}',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -109,41 +109,85 @@ class _StatsPageState extends State<StatsPage> {
         child: ListView(
           children: [
             buildPieHeader('Expense'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      right = false;
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration: right
-                        ? BoxDecoration(
-                            color: Colors.blue,
-                          )
-                        : null,
-                    child: Text('Expenses'),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              width: size.width - 20,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+                border: Border.all(color: right ? Colors.green : Colors.blue),
+              ),
+              alignment: Alignment.center,
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        right = false;
+                      });
+                    },
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 200),
+                      height: 40,
+                      width: right
+                          ? (size.width - 20) / 3
+                          : ((size.width - 20) / 3) * 2,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 4),
+                      decoration: !right
+                          ? BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(40))
+                          : null,
+                      child: Center(
+                        child: Text(
+                          'Expenses',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'TimeBurner'),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      right = true;
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration:
-                        right ? null : BoxDecoration(color: Colors.green),
-                    child: Text('Income'),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        right = true;
+                      });
+                    },
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 200),
+                      height: 40,
+                      width: !right
+                          ? (size.width - 20) / 3
+                          : ((size.width - 20) / 3) * 2,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 4,
+                      ),
+                      decoration: !right
+                          ? null
+                          : BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(40)),
+                      child: Center(
+                        child: Container(
+                          child: Text(
+                            'Income',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'TimeBurner',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Card(
               elevation: 20,
@@ -152,7 +196,8 @@ class _StatsPageState extends State<StatsPage> {
                   vertical: 8,
                 ),
                 height: 300,
-                child: SyncLineChart(_incomeList),
+                child: SyncLineChart(right ? _incomeList : _expenselist, date,
+                    right ? Colors.green : Colors.blue),
               ),
             ),
             SizedBox(

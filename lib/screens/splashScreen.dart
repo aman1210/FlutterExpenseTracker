@@ -37,9 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Theme.of(context).primaryColor
-          : Colors.lightGreen,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: Container(
           // width: double.infinity,

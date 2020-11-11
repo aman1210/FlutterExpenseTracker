@@ -24,54 +24,33 @@ class PIE extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return right == false
-        ? Card(
-            elevation: 20,
-            child: Column(
-              children: [
-                buildPieHeader('Category Wise'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    expenselist.length == 0
-                        ? Image.asset(
-                            'assets/images/noData.png',
-                            width: size.width - 60,
-                          )
-                        : Expanded(
-                            child: PieChart(expenselist, expensetotal,
-                                TransactionType.Expense),
-                          ),
-                  ],
-                ),
-              ],
-            ),
-          )
-        : Card(
-            elevation: 20,
-            child: Column(
-              children: [
-                buildPieHeader('Category Wise'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    incomeList.length == 0
-                        ? Image.asset(
-                            'assets/images/noData.png',
-                            width: size.width - 60,
-                          )
-                        : Expanded(
-                            child: PieChart(
-                              incomeList,
-                              incometotal,
-                              TransactionType.Income,
-                            ),
-                          ),
-                  ],
-                ),
-              ],
-            ),
-          );
+    return Card(
+      elevation: 20,
+      child: Column(
+        children: [
+          buildPieHeader('Category Wise'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              expenselist.length == 0
+                  ? Image.asset(
+                      'assets/images/noData.png',
+                      width: size.width - 100,
+                    )
+                  : Expanded(
+                      child: PieChart(
+                        right ? incomeList : expenselist,
+                        right ? incometotal : expensetotal,
+                        right
+                            ? TransactionType.Income
+                            : TransactionType.Expense,
+                      ),
+                    ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   Container buildPieHeader(String title) {

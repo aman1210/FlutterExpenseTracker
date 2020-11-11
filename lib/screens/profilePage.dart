@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       gradient: LinearGradient(
                         begin: Alignment.centerRight,
                         end: Alignment.centerLeft,
-                        colors: [Colors.lightGreen, Colors.green],
+                        colors: [Colors.lightBlue, Colors.blue[800]],
                         // stops: [0.4, 0.9],
                       ),
                       borderRadius: BorderRadius.circular(5)),
@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       gradient: LinearGradient(
                         begin: Alignment.centerRight,
                         end: Alignment.centerLeft,
-                        colors: [Colors.lightGreen, Colors.green],
+                        colors: [Colors.lightBlue, Colors.blue[800]],
                         // stops: [0.4, 0.9],
                       ),
                       borderRadius: BorderRadius.circular(5)),

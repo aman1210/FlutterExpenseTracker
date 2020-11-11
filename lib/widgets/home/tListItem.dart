@@ -53,6 +53,7 @@ class TListItem extends StatelessWidget {
                 actions: <Widget>[
                   FlatButton.icon(
                     onPressed: () {
+                      cV(false);
                       Navigator.of(context).pop(false);
                     },
                     icon: Icon(Icons.clear),
