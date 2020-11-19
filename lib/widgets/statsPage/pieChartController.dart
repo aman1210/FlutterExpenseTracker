@@ -35,7 +35,7 @@ class PIE extends StatelessWidget {
               expenselist.length == 0
                   ? Image.asset(
                       'assets/images/noData.png',
-                      width: size.width - 100,
+                      width: size.width - 150,
                     )
                   : Expanded(
                       child: PieChart(

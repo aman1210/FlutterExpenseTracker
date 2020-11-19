@@ -1,4 +1,5 @@
 import 'package:expenseTracker/Provider/ad_service.dart';
+import 'package:expenseTracker/widgets/profilePage/remainderSwitch.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,10 +16,10 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
-    FirebaseAdMob.instance.initialize(
-      appId: BannerAd.testAdUnitId,
-    );
-    AdMobService.showBannerAd();
+    // FirebaseAdMob.instance.initialize(
+    //   appId: BannerAd.testAdUnitId,
+    // );
+    // AdMobService.showBannerAd();
     super.initState();
   }
 
@@ -37,8 +38,9 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 20,
           ),
           DarkModeSwitch(),
+          RemainderSwitch(),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

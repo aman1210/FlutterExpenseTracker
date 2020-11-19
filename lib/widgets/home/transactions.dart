@@ -80,27 +80,16 @@ class _TransactionsState extends State<Transactions> {
         ),
         if (transaction.length == 0)
           Container(
-            height: 200,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/noData.png',
-                    height: 150,
-                  ),
-                  Text(
-                    'No Transactions',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'TimeBurner',
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                ],
-              ),
+            height: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/noData.png',
+                  height: 150,
+                ),
+              ],
             ),
           ),
         if (transaction.length > 0)
