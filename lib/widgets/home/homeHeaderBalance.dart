@@ -1,6 +1,8 @@
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class HomeHeaderBalance extends StatelessWidget {
@@ -13,6 +15,7 @@ class HomeHeaderBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var balance = Provider.of<TransactionProvider>(context).balance;
+    var symbol = Provider.of<ProfileProvider>(context).currency;
     return Container(
       width: double.infinity,
       child: Column(
@@ -28,7 +31,7 @@ class HomeHeaderBalance extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Text(
-            '₹ ${balance.toString()}',
+            '$symbol ${balance.toString()}',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'Roboto',

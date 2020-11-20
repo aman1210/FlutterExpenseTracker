@@ -1,3 +1,4 @@
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +17,7 @@ class HomeHeaderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var amount;
+    var symbol = Provider.of<ProfileProvider>(context).currency;
     if (name == 'Earned') {
       amount = Provider.of<TransactionProvider>(context).earned;
     } else {
@@ -56,7 +58,7 @@ class HomeHeaderCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '₹',
+                      '$symbol ',
                       style: TextStyle(
                           fontSize: 24,
                           fontFamily: 'Roboto',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -21,8 +22,11 @@ class _RemainderSwitchState extends State<RemainderSwitch> {
   Future showNotification(String msg) async {
     var hour = int.parse(msg.split(' ')[0]);
     var min = int.parse(msg.split(' ')[1]);
+    final String currentTimeZone =
+        await FlutterNativeTimezone.getLocalTimezone();
+
     tz.initializeTimeZones();
-    tz.setLocalLocation(tz.getLocation('Asia/Kolkata'));
+    tz.setLocalLocation(tz.getLocation(currentTimeZone));
     var scheduledDate = tz.TZDateTime(tz.local, 2020, DateTime.now().month,
         DateTime.now().day + 1, hour, min);
     var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
@@ -44,18 +48,24 @@ class _RemainderSwitchState extends State<RemainderSwitch> {
         .toggleNoti(scheduledDate.toIso8601String());
   }
 
-  @override
-  void initState() {
-    super.initState();
+  init() async {
     var provider = Provider.of<ProfileProvider>(context, listen: false);
     val = provider.showNoti;
+    final String currentTimeZone =
+        await FlutterNativeTimezone.getLocalTimezone();
     tz.initializeTimeZones();
-    tz.setLocalLocation(tz.getLocation('Asia/Kolkata'));
+    tz.setLocalLocation(tz.getLocation(currentTimeZone));
     if (provider.time != '' && provider.time != null) {
       var date = tz.TZDateTime.parse(tz.local, provider.time);
 
       time = TimeOfDay(hour: date.hour, minute: date.minute);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    init();
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid = AndroidInitializationSettings(

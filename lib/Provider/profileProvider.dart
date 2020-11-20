@@ -12,6 +12,7 @@ class ProfileProvider with ChangeNotifier {
   var number = '';
   var email = '';
   var address = '';
+  var currency = '₹';
 
   void addProfile(String path2, String name2, String number2, String email2,
       String address2) {
@@ -26,6 +27,7 @@ class ProfileProvider with ChangeNotifier {
 
   ProfileProvider() {
     starting();
+    getCurrency();
     initProfile();
     startNoti();
   }
@@ -40,6 +42,12 @@ class ProfileProvider with ChangeNotifier {
     showNoti = !showNoti;
     time = newTime;
     saveNoti();
+  }
+
+  changeCurreny(String symbol) {
+    currency = symbol;
+    notifyListeners();
+    saveCurrency();
   }
 
   Future<void> initProfile() async {
@@ -98,5 +106,19 @@ class ProfileProvider with ChangeNotifier {
     }
     showNoti = prefs.getBool('showNoti');
     time = prefs.getString('time');
+  }
+
+  Future<void> saveCurrency() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('currency', currency);
+  }
+
+  Future<void> getCurrency() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('currency')) {
+      return false;
+    }
+    currency = prefs.getString('currency');
+    notifyListeners();
   }
 }
