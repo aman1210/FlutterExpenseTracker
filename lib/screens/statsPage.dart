@@ -131,8 +131,8 @@ class _StatsPageState extends State<StatsPage> {
                       duration: Duration(milliseconds: 200),
                       height: 40,
                       width: right
-                          ? (size.width - 20) / 3
-                          : ((size.width - 20) / 3) * 2,
+                          ? (size.width - 26) / 3
+                          : ((size.width - 26) / 3) * 2,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 4),
                       decoration: !right

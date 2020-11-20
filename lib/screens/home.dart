@@ -57,38 +57,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var header = Container(
-      height: size.height * 0.5,
-      child: Stack(
-        overflow: Overflow.visible,
-        children: [
-          HomeHeaderBackground(
-            height: size.height * 0.5,
-          ),
-          HomeHeaderBalance(),
-          Positioned(
-            bottom: -30,
-            child: Container(
-              width: size.width,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  HomeHeaderCard(
-                    name: 'Spent',
-                    angle: math.pi * 3 / 4,
-                  ),
-                  HomeHeaderCard(
-                    name: 'Earned',
-                    angle: -math.pi * 1 / 4,
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
     return Scaffold(
       body: Container(
         height: size.height,
@@ -98,7 +66,7 @@ class _HomeState extends State<Home> {
             Container(
               height: size.height * 0.4,
               decoration: BoxDecoration(
-                color: Colors.lightGreen,
+                color: Theme.of(context).primaryColor,
                 image: DecorationImage(
                   image: AssetImage(
                     'assets/images/bg9.jpg',
@@ -143,7 +111,7 @@ class _HomeState extends State<Home> {
                 duration: Duration(milliseconds: 200),
                 constraints: BoxConstraints(
                     maxHeight: size.height - 60 - kBottomNavigationBarHeight,
-                    minHeight: size.height - (size.height * 0.4)),
+                    minHeight: size.height - (size.height * 0.42)),
                 height: height,
                 width: size.width,
                 decoration: BoxDecoration(

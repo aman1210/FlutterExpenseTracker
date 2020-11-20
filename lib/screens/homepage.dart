@@ -4,7 +4,6 @@ import 'package:expenseTracker/screens/home.dart';
 import 'package:expenseTracker/screens/statsPage.dart';
 import 'package:expenseTracker/screens/profilePage.dart';
 import 'package:expenseTracker/widgets/fluidNavBar/fluid_nav_bar.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -13,18 +12,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _currentIndex = 0;
-  FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin;
 
   @override
   void initState() {
     super.initState();
-    // var initializationSettingsAndroid =
-    //     new AndroidInitializationSettings('app_icon');
-    // var initializationSettingsIos = new IOSInitializationSettings();
-    // var initializationSettings = InitializationSettings(
-    //     android: initializationSettingsAndroid, iOS: initializationSettingsIos);
-    // flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
-    // flutterLocalNotificationPlugin.initialize(initializationSettings,onSelectNotification: onSelectNotification);
   }
 
   @override

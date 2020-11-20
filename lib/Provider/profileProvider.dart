@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileProvider with ChangeNotifier {
   bool isDark = false;
+  bool showNoti = false;
+  var time = '';
   var path = '';
   var name = '';
   var number = '';
@@ -25,12 +27,19 @@ class ProfileProvider with ChangeNotifier {
   ProfileProvider() {
     starting();
     initProfile();
+    startNoti();
   }
 
   toggleDark() {
     isDark = !isDark;
     notifyListeners();
     saveTheme();
+  }
+
+  toggleNoti(String newTime) {
+    showNoti = !showNoti;
+    time = newTime;
+    saveNoti();
   }
 
   Future<void> initProfile() async {
@@ -74,5 +83,20 @@ class ProfileProvider with ChangeNotifier {
   Future<void> saveTheme() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('isDark', isDark);
+  }
+
+  Future<void> saveNoti() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('showNoti', showNoti);
+    prefs.setString('time', time);
+  }
+
+  Future<void> startNoti() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('showNoti')) {
+      return false;
+    }
+    showNoti = prefs.getBool('showNoti');
+    time = prefs.getString('time');
   }
 }
