@@ -153,7 +153,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
 
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
-          height: visible ? 70 : 0,
+          height: visible ? 110 : 0,
           child: CustomCategoryTitle(
             name: widget.name,
             green: widget.green,

@@ -1,10 +1,10 @@
-import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:expenseTracker/Provider/profileProvider.dart';
 
 class RemainderSwitch extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class RemainderSwitch extends StatefulWidget {
 
 class _RemainderSwitchState extends State<RemainderSwitch> {
   bool val = false;
-  TimeOfDay time = TimeOfDay.now();
+  TimeOfDay time = TimeOfDay(hour: 22, minute: 00);
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       new FlutterLocalNotificationsPlugin();
@@ -49,7 +49,9 @@ class _RemainderSwitchState extends State<RemainderSwitch> {
     super.initState();
     var provider = Provider.of<ProfileProvider>(context, listen: false);
     val = provider.showNoti;
-    if (provider.time != '') {
+    tz.initializeTimeZones();
+    tz.setLocalLocation(tz.getLocation('Asia/Kolkata'));
+    if (provider.time != '' && provider.time != null) {
       var date = tz.TZDateTime.parse(tz.local, provider.time);
 
       time = TimeOfDay(hour: date.hour, minute: date.minute);
@@ -103,7 +105,7 @@ class _RemainderSwitchState extends State<RemainderSwitch> {
                   if (value == true) {
                     newtime = await showTimePicker(
                       context: context,
-                      initialTime: TimeOfDay.now(),
+                      initialTime: TimeOfDay(hour: 22, minute: 0),
                     );
 
                     showNotification('${newtime.hour} ${newtime.minute}');

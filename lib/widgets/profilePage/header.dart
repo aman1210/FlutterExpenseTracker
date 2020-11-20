@@ -122,13 +122,11 @@ class ProfileHeader extends StatelessWidget {
                             size: 20,
                           ),
                           onPressed: () {
-                            Navigator.of(context)
-                                .push(
-                                  MaterialPageRoute(
-                                    builder: (context) => EditProfile(),
-                                  ),
-                                )
-                                .then((value) => AdMobService.showBannerAd());
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => EditProfile(),
+                              ),
+                            );
                           },
                         ),
                       ),

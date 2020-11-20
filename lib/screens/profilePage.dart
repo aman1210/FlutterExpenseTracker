@@ -1,4 +1,5 @@
 import 'package:expenseTracker/Provider/ad_service.dart';
+import 'package:expenseTracker/screens/faqScreen.dart';
 import 'package:expenseTracker/widgets/profilePage/remainderSwitch.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         MaterialPageRoute(
                           builder: (context) => ManageCategories(),
                         ),
-                      ).then((value) => AdMobService.showBannerAd());
+                      );
                     },
                   )),
                 ],
@@ -144,9 +145,64 @@ class _ProfilePageState extends State<ProfilePage> {
                         MaterialPageRoute(
                           builder: (context) => SavedCard(),
                         ),
-                      ).then((value) => AdMobService.showBannerAd());
+                      );
                     },
                   )),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FAQScreen(),
+                ),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    child: Icon(
+                      FontAwesomeIcons.questionCircle,
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                          colors: [Colors.lightBlue, Colors.blue[800]],
+                        ),
+                        borderRadius: BorderRadius.circular(5)),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'FAQ',
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      icon: Icon(Icons.chevron_right),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FAQScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

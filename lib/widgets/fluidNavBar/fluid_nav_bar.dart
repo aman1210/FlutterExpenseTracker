@@ -142,9 +142,9 @@ class _FluidNavBarState extends State<FluidNavBar>
 
     setState(() {
       _selectedIndex = index;
-      if (_selectedIndex != 2 && AdMobService.profilePageAd != null) {
-        AdMobService.hideBannerAd();
-      }
+      // if (_selectedIndex != 2 && AdMobService.profilePageAd != null) {
+      //   AdMobService.hideBannerAd();
+      // }
     });
 
     _yController.value = 1.0;
