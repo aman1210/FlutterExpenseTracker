@@ -118,7 +118,6 @@ class _StatsPageState extends State<StatsPage> {
               ),
               alignment: Alignment.center,
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   InkWell(

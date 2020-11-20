@@ -1,15 +1,11 @@
-import 'package:credit_card_slider/card_background.dart';
-import 'package:credit_card_slider/card_company.dart';
-import 'package:credit_card_slider/card_network_type.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:credit_card_slider/credit_card_slider.dart';
 import 'package:credit_card_slider/credit_card_widget.dart';
-import 'package:credit_card_slider/validity.dart';
+
 import 'package:expenseTracker/Provider/ad_service.dart';
 import 'package:expenseTracker/Provider/cardProvider.dart';
 import 'package:expenseTracker/screens/newCard.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class SavedCard extends StatefulWidget {
   @override
@@ -55,7 +51,6 @@ class _SavedCardState extends State<SavedCard> {
           : Center(
               child: CreditCardSlider(
                 _creditCard,
-                // repeatCards: RepeatCards.down,
               ),
             ),
     );

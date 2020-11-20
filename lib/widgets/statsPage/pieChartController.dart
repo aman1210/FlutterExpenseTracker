@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:expenseTracker/Model/transaction.dart';
 import 'package:expenseTracker/widgets/statsPage/pieChart.dart';
@@ -20,7 +19,6 @@ class PIE extends StatelessWidget {
       this.expensetotal,
       this.right,
       this.incometotal});
-  // var date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {

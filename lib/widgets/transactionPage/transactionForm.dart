@@ -58,7 +58,6 @@ class _TransactionFormState extends State<TransactionForm> {
             green: green,
             blue: blue,
           ),
-          // Spacer(),
           Container(
             margin: const EdgeInsets.only(top: 40),
             width: double.infinity,

@@ -41,7 +41,6 @@ class MakeTansaction extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
-        // margin: const EdgeInsets.only(top: 50),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

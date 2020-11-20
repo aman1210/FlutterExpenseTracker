@@ -84,11 +84,6 @@ class _DraggableCardState extends State<DraggableCard>
               color: Colors.black,
               boxShadow: [
                 const BoxShadow(color: Colors.black38),
-                // const BoxShadow(
-                //   color: Colors.white,
-                //   spreadRadius: -5,
-                //   blurRadius: 10,
-                // ),
               ],
               borderRadius: BorderRadius.circular(60),
             ),

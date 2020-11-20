@@ -60,7 +60,7 @@ class _RemainderSwitchState extends State<RemainderSwitch> {
         FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid = AndroidInitializationSettings(
       'app_icon',
-    ); // <- default icon name is @mipmap/ic_launcher
+    );
     var initializationSettingsIOS = IOSInitializationSettings();
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
@@ -88,7 +88,6 @@ class _RemainderSwitchState extends State<RemainderSwitch> {
                       begin: Alignment.centerRight,
                       end: Alignment.centerLeft,
                       colors: [Colors.lightBlue, Colors.blue[800]],
-                      // stops: [0.4, 0.9],
                     ),
                     borderRadius: BorderRadius.circular(5)),
               ),

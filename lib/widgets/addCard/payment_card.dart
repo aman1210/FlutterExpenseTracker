@@ -1,6 +1,3 @@
-import 'package:credit_card_slider/card_network_type.dart';
-import 'package:credit_card_slider/credit_card_widget.dart';
-
 import './my_strings.dart';
 import 'package:expenseTracker/widgets/addCard/my_strings.dart';
 import 'package:flutter/material.dart';

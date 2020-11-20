@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:credit_card_slider/card_background.dart';
@@ -61,11 +60,10 @@ class _AddCardState extends State<AddCard> {
   var _formKey = new GlobalKey<FormState>();
   var numberController = new TextEditingController();
   var _paymentCard = PaymentCard();
-  var _autoValidate = false;
   String cardHolderName = '';
   String cardNumber = '';
-  int validMonth = null;
-  int validYear = null;
+  int validMonth;
+  int validYear;
   CardNetworkType network;
   CardCompany company = CardCompany.axisBank;
 
@@ -230,7 +228,6 @@ class _AddCardState extends State<AddCard> {
                   setState(() {
                     cardNumber = value;
                   });
-                  // _paymentCard.number = CardUtils.getCleanedNumber(value);
                 },
                 validator: CardUtils.validateCardNum,
               ),
@@ -283,7 +280,6 @@ class _AddCardState extends State<AddCard> {
 
   @override
   void dispose() {
-    // Clean up the controller when the Widget is removed from the Widget tree
     numberController.removeListener(_getCardTypeFrmNumber);
     numberController.dispose();
     super.dispose();

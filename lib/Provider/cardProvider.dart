@@ -109,18 +109,6 @@ class CardProvider with ChangeNotifier {
           ));
     });
     notifyListeners();
-    // var newCard = CreditCard(
-    //   cardBackground: _background[random.nextInt(_background.length)],
-    //   cardHolderName: c['name'],
-    //   cardNetworkType: network,
-    //   company: card,
-    //   cardNumber: c['cardnumber'],
-    //   validity: Validity(
-    //     validThruMonth: c['month'],
-    //     validThruYear: c['year'],
-    //   ),
-    // );
-    // return newCard;
   }
 
   String companyName(CardCompany c) {

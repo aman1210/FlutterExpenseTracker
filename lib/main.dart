@@ -1,12 +1,11 @@
-import 'package:expenseTracker/Provider/cardProvider.dart';
-import 'package:expenseTracker/Provider/notificationProvider.dart';
-import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
 import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
+import 'package:expenseTracker/Provider/cardProvider.dart';
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/screens/splashScreen.dart';
 
 void main() {
@@ -26,7 +25,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => CategoryProvider()),
         ChangeNotifierProvider(create: (ctx) => TransactionProvider()),
         ChangeNotifierProvider(create: (ctx) => CardProvider()),
-        ChangeNotifierProvider(create: (ctx) => NotificationProvider()),
       ],
       child: Consumer<ProfileProvider>(builder: (context, value, _) {
         return MaterialApp(

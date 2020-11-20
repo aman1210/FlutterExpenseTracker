@@ -1,18 +1,12 @@
 import 'dart:math' as math;
 
-import 'package:expenseTracker/Model/transaction.dart';
-import 'package:expenseTracker/Provider/transactionProvider.dart';
-import 'package:expenseTracker/widgets/home/homeHeaderBground.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderBalance.dart';
 import 'package:expenseTracker/widgets/home/homeHeaderCard.dart';
-import 'package:expenseTracker/widgets/home/tListItem.dart';
 import 'package:expenseTracker/widgets/home/transactions.dart';
 import 'package:flutter/material.dart';
 
 import 'package:expenseTracker/widgets/home/dragContainer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -20,38 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // ScrollController _controller;
-  // List<Transaction> alltransaction = [];
-  // List<Transaction> transaction = [];
-  // int month = DateTime.now().month;
-
-  // initApp() {
-  //   alltransaction = Provider.of<TransactionProvider>(context).transaction;
-  //   transaction =
-  //       alltransaction.where((element) => element.date.month == month).toList();
-  //   _controller = ScrollController();
-  // }
-
-  // changeDate(int i) {
-  //   setState(() {
-  //     month += i;
-  //   });
-  //   Provider.of<TransactionProvider>(context, listen: false)
-  //       .totalBalance(month);
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // initApp();
-  // }
-
-  // @override
-  // void didUpdateWidget(covariant Home oldWidget) {
-  //   // TODO: implement didUpdateWidget
-  //   // print('hello');
-  //   super.didUpdateWidget(oldWidget);
-  // }
   double height = 300;
   bool expanded = false;
   @override
@@ -104,7 +66,6 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            // header,
             Positioned(
               bottom: 0,
               child: AnimatedContainer(
@@ -186,81 +147,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-////  OLD CODE
-///
-///Column(
-//   children: [
-//     Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         IconButton(
-//           icon: Icon(FontAwesomeIcons.arrowCircleLeft),
-//           onPressed: () {
-//             changeDate(-1);
-//           },
-//         ),
-//         Expanded(
-//           child: Text(
-//             'Transactions ${DateTime.now().month == month ? "this month" : "in " + DateFormat.MMMM().format(DateTime(DateTime.now().year, month))}',
-//             style: TextStyle(
-//               fontSize: 20,
-//               fontWeight: FontWeight.bold,
-//               fontFamily: 'TimeBurner',
-//             ),
-//             textAlign: TextAlign.center,
-//           ),
-//         ),
-//         IconButton(
-//           icon: Icon(FontAwesomeIcons.arrowCircleRight),
-//           onPressed: () {
-//             changeDate(1);
-//           },
-//         ),
-//       ],
-//     ),
-//     if (transaction.length == 0)
-//       Expanded(
-//         child: Padding(
-//           padding: const EdgeInsets.only(top: 30.0),
-//           child: Image.asset(
-//             'assets/images/search.png',
-//             // fit: BoxFit.contain,
-//             height: 200,
-//           ),
-//         ),
-//       ),
-
-//     if (transaction.length == 0)
-//       Text(
-//         'No Transactions',
-//         textAlign: TextAlign.center,
-//         style: TextStyle(
-//           fontSize: 16,
-//           fontFamily: 'TimeBurner',
-//           fontWeight: FontWeight.bold,
-//           letterSpacing: 1,
-//         ),
-//       ),
-//     // if (transaction.length > 0)
-
-//     if (transaction.length > 0)
-//       Expanded(
-//         child: SingleChildScrollView(
-//           padding: const EdgeInsets.only(bottom: 20),
-//           controller: _controller,
-//           child: Column(
-//             children: [
-//               ...transaction.map(
-//                 (e) {
-//                   return TListItem(
-//                     e: e,
-//                   );
-//                 },
-//               ).toList(),
-//             ],
-//           ),
-//         ),
-//       ),
-//   ],
-// ),

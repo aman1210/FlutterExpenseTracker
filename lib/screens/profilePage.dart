@@ -1,12 +1,11 @@
-import 'package:expenseTracker/Provider/ad_service.dart';
-import 'package:expenseTracker/screens/faqScreen.dart';
-import 'package:expenseTracker/widgets/profilePage/remainderSwitch.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:expenseTracker/screens/faqScreen.dart';
 import 'package:expenseTracker/screens/categories.dart';
-import 'package:expenseTracker/widgets/profilePage/darkModeSwitch.dart';
 import 'package:expenseTracker/screens/SavedCard.dart';
+import 'package:expenseTracker/widgets/profilePage/remainderSwitch.dart';
+import 'package:expenseTracker/widgets/profilePage/darkModeSwitch.dart';
 import 'package:expenseTracker/widgets/profilePage/header.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -17,10 +16,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
-    // FirebaseAdMob.instance.initialize(
-    //   appId: BannerAd.testAdUnitId,
-    // );
-    // AdMobService.showBannerAd();
     super.initState();
   }
 
@@ -80,7 +75,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Container(
-                      // margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: IconButton(
                     icon: Icon(Icons.chevron_right),
                     onPressed: () {
@@ -122,7 +116,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
                           colors: [Colors.lightBlue, Colors.blue[800]],
-                          // stops: [0.4, 0.9],
                         ),
                         borderRadius: BorderRadius.circular(5)),
                   ),
@@ -136,7 +129,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Container(
-                      // margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: IconButton(
                     icon: Icon(Icons.chevron_right),
                     onPressed: () {

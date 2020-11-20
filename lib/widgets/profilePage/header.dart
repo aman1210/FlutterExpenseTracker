@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:expenseTracker/Provider/ad_service.dart';
 import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/screens/editProfile.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +61,6 @@ class ProfileHeader extends StatelessWidget {
                           ? Icon(
                               FontAwesomeIcons.user,
                               size: 35,
-                              // color: Colors.black,
                             )
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(35),

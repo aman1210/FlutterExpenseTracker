@@ -77,7 +77,6 @@ class _PieChartState extends State<PieChart> {
           dataLabelMapper: (ChartSampleData data, _) => data.text,
           startAngle: 90,
           endAngle: 90,
-          // explodeAll: true,
           dataLabelSettings: DataLabelSettings(isVisible: true)),
     ];
   }

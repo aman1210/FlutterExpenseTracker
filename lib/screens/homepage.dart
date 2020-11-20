@@ -26,7 +26,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ProfilePage(),
     ];
     return Scaffold(
-      // backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: true,
       body: _list[_currentIndex],
       bottomNavigationBar: Container(

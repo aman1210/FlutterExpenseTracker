@@ -46,7 +46,6 @@ class _DarkModeSwitchState extends State<DarkModeSwitch> {
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [Colors.lightBlue, Colors.blue[800]],
-                  // stops: [0.4, 0.9],
                 ),
                 borderRadius: BorderRadius.circular(5)),
           ),

@@ -150,7 +150,6 @@ class _CategoryPickerState extends State<CategoryPicker> {
       children: [
         heading,
         categories,
-
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
           height: visible ? 110 : 0,
@@ -161,7 +160,6 @@ class _CategoryPickerState extends State<CategoryPicker> {
             changeVisibilty: changeVisibility,
           ),
         ),
-        // if (visible) CustomIconPicker()
       ],
     );
   }
