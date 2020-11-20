@@ -39,99 +39,116 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           DarkModeSwitch(),
           RemainderSwitch(),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  child: Icon(
-                    FontAwesomeIcons.networkWired,
-                    color: Colors.white,
-                  ),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft,
-                        colors: [Colors.lightBlue, Colors.blue[800]],
-                        // stops: [0.4, 0.9],
-                      ),
-                      borderRadius: BorderRadius.circular(5)),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ManageCategories(),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Manage Categories',
-                      textAlign: TextAlign.start,
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    child: Icon(
+                      FontAwesomeIcons.networkWired,
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                          colors: [Colors.lightBlue, Colors.blue[800]],
+                          // stops: [0.4, 0.9],
+                        ),
+                        borderRadius: BorderRadius.circular(5)),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Manage Categories',
+                        textAlign: TextAlign.start,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                    // margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: IconButton(
-                  icon: Icon(Icons.chevron_right),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ManageCategories(),
-                      ),
-                    ).then((value) => AdMobService.showBannerAd());
-                  },
-                )),
-              ],
+                  Container(
+                      // margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: IconButton(
+                    icon: Icon(Icons.chevron_right),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ManageCategories(),
+                        ),
+                      ).then((value) => AdMobService.showBannerAd());
+                    },
+                  )),
+                ],
+              ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            decoration: BoxDecoration(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  child: Icon(
-                    FontAwesomeIcons.creditCard,
-                    color: Colors.white,
-                  ),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft,
-                        colors: [Colors.lightBlue, Colors.blue[800]],
-                        // stops: [0.4, 0.9],
-                      ),
-                      borderRadius: BorderRadius.circular(5)),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SavedCard(),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Saved Cards',
-                      textAlign: TextAlign.start,
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    child: Icon(
+                      FontAwesomeIcons.creditCard,
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                          colors: [Colors.lightBlue, Colors.blue[800]],
+                          // stops: [0.4, 0.9],
+                        ),
+                        borderRadius: BorderRadius.circular(5)),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Saved Cards',
+                        textAlign: TextAlign.start,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                    // margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: IconButton(
-                  icon: Icon(Icons.chevron_right),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SavedCard(),
-                      ),
-                    ).then((value) => AdMobService.showBannerAd());
-                  },
-                )),
-              ],
+                  Container(
+                      // margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: IconButton(
+                    icon: Icon(Icons.chevron_right),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SavedCard(),
+                        ),
+                      ).then((value) => AdMobService.showBannerAd());
+                    },
+                  )),
+                ],
+              ),
             ),
           ),
           Expanded(child: Container()),
