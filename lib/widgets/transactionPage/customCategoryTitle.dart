@@ -110,6 +110,9 @@ class _CustomCategoryTitleState extends State<CustomCategoryTitle> {
           ),
           RaisedButton(
               onPressed: () {
+                setState(() {
+                  title = _category.value.text;
+                });
                 saveForm();
               },
               child: Text('Add')),

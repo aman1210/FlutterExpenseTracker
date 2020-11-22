@@ -53,7 +53,7 @@ class FAQScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 14.0),
               child: Text(
-                'In transaction form tap on the icon which says other and type in the name of new category and then tap on Add button.',
+                'When adding new transaction, tap on the icon "Other" and enter the title for new category and then tap "Add" button.',
                 style: answer,
               ),
             ),
@@ -67,7 +67,7 @@ class FAQScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 14.0),
               child: Text(
-                'Since the app is completely offline and all the data is stored in the devices itself, it is completely safe to add card.',
+                'Since the app is completely offline and all the data is stored in the device itself, it is completely safe to add card.',
                 style: answer,
               ),
             ),

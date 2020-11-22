@@ -1,3 +1,4 @@
+import 'package:expenseTracker/Provider/profileProvider.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,7 +103,7 @@ class _MainFormState extends State<MainForm> {
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Text(
-                  '₹',
+                  Provider.of<ProfileProvider>(context).currency,
                   style: TextStyle(
                       fontSize: 24,
                       fontFamily: 'Roboto',

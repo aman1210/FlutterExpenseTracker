@@ -1,8 +1,9 @@
-import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:expenseTracker/Model/category.dart';
+import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/Provider/categoryProvider.dart';
 import 'package:expenseTracker/widgets/transactionPage/customCategoryTitle.dart';
 
@@ -30,6 +31,10 @@ class _CategoryPickerState extends State<CategoryPicker> {
   void initState() {
     super.initState();
     visible = false;
+    init();
+  }
+
+  init() {
     category = Provider.of<CategoryProvider>(context, listen: false)
         .getCategory(widget.name);
   }
@@ -91,6 +96,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          
           return InkWell(
             onTap: () {
               setState(() {

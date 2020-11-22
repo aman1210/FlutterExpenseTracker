@@ -42,8 +42,8 @@ class SyncLineChart extends StatelessWidget {
               stops: [
                 0.2,
                 0.8,
-                1
-              ]),
+                1,
+              ],),
           dataSource: pieData,
           xValueMapper: (datum, index) =>
               DateTime.fromMicrosecondsSinceEpoch(datum.dateTime * 1000),
@@ -60,7 +60,7 @@ class SyncLineChart extends StatelessWidget {
       primaryYAxis: NumericAxis(interval: 500, associatedAxisName: 'Amount'),
       tooltipBehavior: TooltipBehavior(
         enable: true,
-        header: 'Income',
+        header: color == Colors.green? 'Income': 'Expense',
       ),
       primaryXAxis: DateTimeAxis(
           minimum: DateTime(2020, 11),

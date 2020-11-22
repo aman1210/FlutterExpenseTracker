@@ -71,9 +71,12 @@ class _ProfilePageState extends State<ProfilePage> {
       builder: (context) {
         return Dialog(
           child: Container(
-            height: 255,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+            padding: const EdgeInsets.all(8),
+            // height: 255,
             width: double.infinity,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 createCurrency(index: 1, name: 'Rupee', symbol: '₹'),
@@ -170,7 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
           border: Border(
             bottom: BorderSide(color: Colors.grey[300], width: 2),
           ),
-          color: index % 2 != 0
+          color: Provider.of<ProfileProvider>(context).currency ==symbol? Theme.of(context).accentColor.withOpacity(0.4):index % 2 != 0
               ? Theme.of(context).brightness == Brightness.dark
                   ? Colors.grey[800]
                   : Colors.white
@@ -188,6 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto'
                   ),
                 ),
               ),
