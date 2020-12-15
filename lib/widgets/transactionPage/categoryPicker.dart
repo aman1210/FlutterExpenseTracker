@@ -59,7 +59,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
   @override
   Widget build(BuildContext context) {
     var heading = Padding(
-      padding: const EdgeInsets.only(top: 40.0),
+      padding: const EdgeInsets.only(top: 20.0),
       child: Row(
         children: [
           Text(
@@ -96,7 +96,6 @@ class _CategoryPickerState extends State<CategoryPicker> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          
           return InkWell(
             onTap: () {
               setState(() {

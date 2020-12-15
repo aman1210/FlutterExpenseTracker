@@ -36,6 +36,13 @@ class _DatePickerState extends State<DatePicker> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black38,
+                  blurRadius: 4,
+                  offset: Offset(2, 2),
+                ),
+              ],
             ),
             child: Icon(
               FontAwesomeIcons.calendarAlt,

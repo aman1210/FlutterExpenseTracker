@@ -19,6 +19,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    // print(size.height);
     return Scaffold(
       body: Container(
         height: size.height,
@@ -44,7 +45,7 @@ class _HomeState extends State<Home> {
                     month: DateTime.now().month,
                   ),
                   SizedBox(
-                    height: 20,
+                    height: size.height * 0.008,
                   ),
                   Container(
                     width: size.width,
@@ -54,15 +55,19 @@ class _HomeState extends State<Home> {
                       children: [
                         HomeHeaderCard(
                           name: 'Spent',
-                          angle: math.pi * 3 / 4,
+                          angle: -math.pi * 1 / 4,
                         ),
                         HomeHeaderCard(
                           name: 'Earned',
-                          angle: -math.pi * 1 / 4,
+                          angle: math.pi * 1 / 4,
                         ),
                       ],
                     ),
                   ),
+                  if (size.height < 685)
+                    SizedBox(
+                      height: 20,
+                    )
                 ],
               ),
             ),
@@ -105,7 +110,7 @@ class _HomeState extends State<Home> {
                       onPanEnd: (details) {
                         if (expanded) {
                           setState(() {
-                            height = size.height - (size.height * 0.4);
+                            height = size.height - (size.height * 0.42);
                             expanded = false;
                           });
                         } else {

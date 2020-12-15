@@ -4,6 +4,7 @@ import 'package:expenseTracker/Model/transaction.dart';
 
 class TransactionProvider with ChangeNotifier {
   String title;
+  String imagepath;
   int amount;
   DateTime date = DateTime.now();
   int iconCode;
@@ -53,12 +54,17 @@ class TransactionProvider with ChangeNotifier {
     date = newdateTime;
   }
 
+  setImage(String path) {
+    imagepath = path;
+  }
+
   cancelTransaction() {
     title = null;
     amount = null;
     date = DateTime.now();
     iconCode = null;
     category = null;
+    imagepath = null;
   }
 
   Future<void> fetchAndSetTransaction() async {
@@ -66,16 +72,17 @@ class TransactionProvider with ChangeNotifier {
     List<Transaction> _t = [];
     _t = tList.map((e) {
       var t = Transaction(
-        transactionType:
-            e['type'] == 0 ? TransactionType.Income : TransactionType.Expense,
-        title: e['title'],
-        amount: e['amount'],
-        category: e['category'],
-        icon: e['iconCode'],
-        date: DateTime.parse(e['date']),
-        iconFamily: e['iconFamily'],
-        iconPackage: e['iconPackage'],
-      );
+          transactionType:
+              e['type'] == 0 ? TransactionType.Income : TransactionType.Expense,
+          title: e['title'],
+          amount: e['amount'],
+          category: e['category'],
+          icon: e['iconCode'],
+          date: DateTime.parse(e['date']),
+          iconFamily: e['iconFamily'],
+          iconPackage: e['iconPackage'],
+          //add image
+          imagePath: e['imagePath']);
       if (e['type'] == 1) {
         expense.add(t);
       }
@@ -107,7 +114,8 @@ class TransactionProvider with ChangeNotifier {
           iconPackage: iconPackage,
           date: date,
           title: title,
-          transactionType: _t),
+          transactionType: _t,
+          imagePath: imagepath == null ? '' : imagepath),
     );
     totalBalance(DateTime.now().month);
     notifyListeners();
@@ -120,6 +128,7 @@ class TransactionProvider with ChangeNotifier {
       iconFamily: iconFamily,
       iconPackage: iconPackage,
       type: _t.index,
+      imagePath: imagepath == null ? '' : imagepath,
     );
     cancelTransaction();
     return '';

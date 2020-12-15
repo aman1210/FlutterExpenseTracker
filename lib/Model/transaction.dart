@@ -14,6 +14,7 @@ class Transaction {
   final String iconFamily;
   final String iconPackage;
   final TransactionType transactionType;
+  final String imagePath;
 
   Transaction(
       {@required this.transactionType,
@@ -23,5 +24,6 @@ class Transaction {
       @required this.icon,
       @required this.date,
       @required this.iconFamily,
-      @required this.iconPackage});
+      @required this.iconPackage,
+      this.imagePath});
 }

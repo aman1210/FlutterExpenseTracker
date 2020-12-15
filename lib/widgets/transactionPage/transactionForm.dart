@@ -1,11 +1,15 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:expenseTracker/Model/transaction.dart';
 import 'package:expenseTracker/Provider/transactionProvider.dart';
 import 'package:expenseTracker/widgets/transactionPage/categoryPicker.dart';
-import 'package:flutter/material.dart';
 import 'package:expenseTracker/widgets/transactionPage/datePicker.dart';
 import 'package:expenseTracker/widgets/transactionPage/mainFormEntry.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class TransactionForm extends StatefulWidget {
   TransactionForm({
@@ -53,6 +57,52 @@ class _TransactionFormState extends State<TransactionForm> {
           formHeading,
           DatePicker(),
           MainForm(name: widget.name, green: green, blue: blue),
+          if (widget.name != 'Income')
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'ADD RECEIPT',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      print('adding receipt');
+                      var imagePicker = ImagePicker();
+                      var image = await imagePicker.getImage(
+                          source: ImageSource.camera);
+                      var _imagepath = File(image.path);
+
+                      Provider.of<TransactionProvider>(context, listen: false)
+                          .setImage(_imagepath.path);
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(40),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black38,
+                            blurRadius: 4,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                      child: Icon(Icons.add),
+                    ),
+                  )
+                ],
+              ),
+            ),
           CategoryPicker(
             name: widget.name,
             green: green,

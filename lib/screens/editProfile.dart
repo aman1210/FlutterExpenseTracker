@@ -50,7 +50,6 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void initState() {
     super.initState();
-    AdMobService.hideBannerAd();
     var provider = Provider.of<ProfileProvider>(context, listen: false);
     if (provider.name != '') {
       name = provider.name;

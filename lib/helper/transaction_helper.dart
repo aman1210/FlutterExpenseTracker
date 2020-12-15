@@ -7,20 +7,20 @@ class TransactionHelper {
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase(path.join(dbPath, 't.db'), onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE t_helper(title TEXT,amount INTEGER,date TEXT,category TEXT ,iconCode INTEGER,iconFamily TEXT,iconPackage TEXT,type INTEGER)');
+          'CREATE TABLE t_helper(title TEXT,amount INTEGER,date TEXT,category TEXT ,iconCode INTEGER,iconFamily TEXT,iconPackage TEXT,type INTEGER,imagePath TEXT)');
     }, version: 1);
   }
 
-  static Future<void> insert({
-    String title,
-    int amount,
-    String date,
-    String category,
-    int iconCode,
-    String iconFamily,
-    String iconPackage,
-    int type,
-  }) async {
+  static Future<void> insert(
+      {String title,
+      int amount,
+      String date,
+      String category,
+      int iconCode,
+      String iconFamily,
+      String iconPackage,
+      int type,
+      String imagePath}) async {
     final db = await TransactionHelper.database();
     await db.insert('t_helper', {
       'title': title,
@@ -31,6 +31,7 @@ class TransactionHelper {
       'iconFamily': iconFamily,
       'iconPackage': iconPackage,
       'type': type,
+      'imagePath': imagePath,
     });
   }
 
